@@ -3,14 +3,14 @@ import appColors from "./appColors";
 
 const titleLargeMedium: StyleProp<TextStyle> = {
     fontSize: 24,
-    fontWeight: "semibold",
+    fontWeight: "bold",
     fontFamily: "Roboto",
 };
 
 const paragraphLargeRegular: StyleProp<TextStyle> = {
     fontSize: 16,
     fontWeight: "regular",
-    fontFamily: "inter, sans-serif",
+    fontFamily: "Roboto",
 };
 
 const paragraphSmallRegular: StyleProp<TextStyle> = {
@@ -21,7 +21,7 @@ const paragraphSmallRegular: StyleProp<TextStyle> = {
 
 const titleSmallSemiBold: StyleProp<TextStyle> = {
     fontSize: 16,
-    fontWeight: "semibold",
+    fontWeight: "bold",
     fontFamily: "Roboto",
 };
 
@@ -33,7 +33,7 @@ const paragraphExtraSmallRegular: StyleProp<TextStyle> = {
 
 const titleMediumSemiBold: StyleProp<TextStyle> = {
     fontSize: 18,
-    fontWeight: "semibold",
+    fontWeight: "bold",
     fontFamily: "Roboto",
 };
 

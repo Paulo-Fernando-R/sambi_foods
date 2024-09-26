@@ -4,6 +4,8 @@ import { View, Text } from "react-native";
 import CustomTabNavigation from "../components/customTabNavigation/CustomTabNavigation";
 import appColors from "../services/appColors";
 
+import Foods from "../screens/foods/Foods";
+
 const Tab = createBottomTabNavigator();
 
 export default function Router() {
@@ -15,13 +17,13 @@ export default function Router() {
                     headerShown: false,
                     tabBarHideOnKeyboard: true,
                 }}
-
+                initialRouteName="Foods"
                 sceneContainerStyle={{ backgroundColor: appColors.bgLight }}
             >
-                <Tab.Screen name="Test1" component={Test1} options={{tabBarLabel:'Comidas'}}/>
-                <Tab.Screen name="Test2" component={Test2} options={{tabBarLabel:'Bebidas'}}/>
-                <Tab.Screen name="Test3" component={Test3} options={{tabBarLabel:'Favoritas'}}/>
-                <Tab.Screen name="Test4" component={Test4} options={{tabBarLabel:'Usuário'}}/>
+                <Tab.Screen name="Foods" component={Foods} options={{ tabBarLabel: "Comidas" }} />
+                <Tab.Screen name="Test2" component={Test2} options={{ tabBarLabel: "Bebidas" }} />
+                <Tab.Screen name="Test3" component={Test3} options={{ tabBarLabel: "Favoritas" }} />
+                <Tab.Screen name="Test4" component={Test4} options={{ tabBarLabel: "Usuário" }} />
             </Tab.Navigator>
         </NavigationContainer>
     );

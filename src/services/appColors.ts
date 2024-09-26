@@ -7,7 +7,19 @@ const textLight = "#FFFFFF";
 const bgLight = "#F5F5F5";
 const textMediumLight = "#E3E3E3";
 const bgIcon = "#F2D2B7";
+const bgTags = "rgba(58, 60, 63, 0.8)";
 
-const appColors = { primary, primaryLight, accent, textDark, textMedium, textLight, bgLight, textMediumLight, bgIcon };
+const appColors = {
+    primary,
+    primaryLight,
+    accent,
+    textDark,
+    textMedium,
+    textLight,
+    bgLight,
+    textMediumLight,
+    bgIcon,
+    bgTags,
+};
 
 export default appColors;
