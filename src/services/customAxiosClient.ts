@@ -1,11 +1,13 @@
 import axios, { AxiosResponse, AxiosError, InternalAxiosRequestConfig } from "axios";
+import RecipeType from "../enums/recipeType";
 
-const axiosInstance = (baseUrl: "foods" | "drinks") => {
-    const url = baseUrl === "foods" ? process.env.EXPO_PUBLIC_FOODS_API : process.env.EXPO_PUBLIC_DRINKS_API;
+
+const axiosInstance = (baseUrl:RecipeType) => {
+    const url = baseUrl === RecipeType.food ? process.env.EXPO_PUBLIC_FOODS_API : process.env.EXPO_PUBLIC_DRINKS_API;
+
     const instance = axios.create({
         baseURL: url,
     });
-    axios.get("", {});
 
     const reqInterceptor = async (config: InternalAxiosRequestConfig<AxiosResponse>) => {
         config.validateStatus = () => true;
@@ -13,6 +15,7 @@ const axiosInstance = (baseUrl: "foods" | "drinks") => {
     };
 
     const resInterceptor = (response: AxiosResponse) => {
+      
         if (response.status === 401) {
             //todo
         }
@@ -26,6 +29,10 @@ const axiosInstance = (baseUrl: "foods" | "drinks") => {
     };
     instance.interceptors.response.use(resInterceptor);
     instance.interceptors.request.use(reqInterceptor, errInterceptor);
+
+    return instance;
 };
+
+
 
 export default axiosInstance;

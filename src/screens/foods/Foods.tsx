@@ -4,9 +4,24 @@ import React, { useRef } from "react";
 import SearchInput from "../../components/searchInput/SearchInput";
 import CountryTags from "../../components/countryTags/CountryTags";
 import CategoriesList from "../../components/categoriesList/CategoriesList";
+import FoodRepository from "../../repositories/foodRepository";
+import { useQuery } from "@tanstack/react-query";
+import FoodsController from "./foodsController";
 
 export default function Foods() {
+    const controller = new FoodsController();
     const ref = useRef<TextInput>(null);
+
+    const foodRepository = new FoodRepository();
+
+    const { data, error, isLoading, isFetching, isRefetching } = useQuery({
+        queryKey: ["category"],
+        queryFn:() => controller.getCategories(),
+    });
+
+    console.log(data);
+
+    if (!data || error) return null;
 
     return (
         <View style={styles.screenContainer}>
@@ -14,9 +29,8 @@ export default function Foods() {
             <SearchInput placeholder="Pesquisar receitas" inputRef={ref} />
             <ScrollView style={styles.scrollArea} contentContainerStyle={styles.scrollAreaContent}>
                 <CountryTags />
-                <CategoriesList />
+                <CategoriesList list={data} />
             </ScrollView>
-            
         </View>
     );
 }
