@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     title: {
         ...appTexts.titleLargeMedium,
         color: appColors.textDark,
+        fontWeight: 'bold',
         width: "80%",
         paddingHorizontal: 20
     },
