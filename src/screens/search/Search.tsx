@@ -1,7 +1,6 @@
 import { View, Text, FlatList, Image, TouchableOpacity } from "react-native";
 import styles from "./searchStyles";
 import React from "react";
-import BackButton from "../../components/backButton/BackButton";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import appColors from "../../services/appColors";
 import { NavigationHelpers, ParamListBase } from "@react-navigation/native";
