@@ -5,6 +5,7 @@ import appColors from "../../services/appColors";
 const styles = StyleSheet.create({
     container: {
         gap: 12,
+        paddingHorizontal: 20,
     },
     title: {
         ...appTexts.titleSmallSemiBold,

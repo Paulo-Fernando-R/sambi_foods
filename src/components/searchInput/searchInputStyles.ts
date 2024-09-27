@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         justifyContent: "space-between",
         alignItems: "center",
+        marginHorizontal: 20,
     },
 });
 

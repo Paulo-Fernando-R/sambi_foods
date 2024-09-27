@@ -122,7 +122,7 @@ function Closed({ setIsOpen }: CountryTagsContentProps) {
                 })}
             </View>
             <TouchableHighlight onPress={() => setIsOpen(true)} underlayColor={""}>
-                <Text style={styles.actionButton}>Ver menos</Text>
+                <Text style={styles.actionButton}>Ver mais</Text>
             </TouchableHighlight>
         </View>
     );
