@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import appColors from "../../services/appColors";
+import appColors from "../../styles/appColors";
 
 const styles = StyleSheet.create({
     backButton: {

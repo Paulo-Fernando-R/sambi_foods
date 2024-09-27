@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./favoriteStyles";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { TouchableOpacity } from "react-native";
-import appColors from "../../services/appColors";
+import appColors from "../../styles/appColors";
 export default function Favorite() {
     const [isFav, setIsFav] = useState(false);
     const handleFav = () => {

@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { View, Text } from "react-native";
 import CustomTabNavigation from "../components/customTabNavigation/CustomTabNavigation";
-import appColors from "../services/appColors";
+import appColors from "../styles/appColors";
 import FoodsRouter from "./FoodsRouter";
 import Foods from "../screens/foods/Foods";
 

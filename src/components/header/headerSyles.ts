@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
-import appColors from "../../services/appColors";
-import appTexts from "../../services/appText";
+import appColors from "../../styles/appColors";
+import appTexts from "../../styles/appText";
 
 const styles = StyleSheet.create({
     header: {

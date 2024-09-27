@@ -2,7 +2,7 @@ import { TouchableOpacity } from "react-native";
 import styles from "./backButtonStyles";
 import Entypo from "@expo/vector-icons/Entypo";
 import React from "react";
-import appColors from "../../services/appColors";
+import appColors from "../../styles/appColors";
 
 type BackButtonProps = {
     onPress: () => void;

@@ -1,7 +1,7 @@
 import { View, TextInput } from "react-native";
 import styles from "./searchInputStyles";
 import React from "react";
-import appColors from "../../services/appColors";
+import appColors from "../../styles/appColors";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 type SearchInputProps = {

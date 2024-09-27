@@ -7,7 +7,7 @@ import {
     BottomTabDescriptorMap,
     BottomTabNavigationEventMap,
 } from "@react-navigation/bottom-tabs/lib/typescript/src/types";
-import appColors from "../../services/appColors";
+import appColors from "../../styles/appColors";
 
 type CustomTabNavigationProps = {
     state: TabNavigationState<ParamListBase>;
