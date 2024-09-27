@@ -1,3 +1,4 @@
+import './src/routes/gestureHandlerNative'
 import Router from "./src/routes/Router";
 import { StatusBar } from "expo-status-bar";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";

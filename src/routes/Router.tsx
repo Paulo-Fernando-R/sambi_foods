@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { View, Text } from "react-native";
 import CustomTabNavigation from "../components/customTabNavigation/CustomTabNavigation";
 import appColors from "../services/appColors";
-
+import FoodsRouter from "./FoodsRouter";
 import Foods from "../screens/foods/Foods";
 
 const Tab = createBottomTabNavigator();
@@ -20,7 +20,7 @@ export default function Router() {
                 initialRouteName="Foods"
                 sceneContainerStyle={{ backgroundColor: appColors.bgLight }}
             >
-                <Tab.Screen name="Foods" component={Foods} options={{ tabBarLabel: "Comidas" }} />
+                <Tab.Screen name="Foods" component={FoodsRouter} options={{ tabBarLabel: "Comidas" }} />
                 <Tab.Screen name="Test2" component={Test2} options={{ tabBarLabel: "Bebidas" }} />
                 <Tab.Screen name="Test3" component={Test3} options={{ tabBarLabel: "Favoritas" }} />
                 <Tab.Screen name="Test4" component={Test4} options={{ tabBarLabel: "Usuário" }} />
