@@ -5,13 +5,14 @@ import BackButton from "../../components/backButton/BackButton";
 
 type HeaderProps = {
     goBack: () => void;
+    title: string
 };
 
-export default function Header({ goBack }: HeaderProps) {
+export default function Header({ goBack, title }: HeaderProps) {
     return (
         <View style={styles.header}>
             <BackButton onPress={goBack} />
-            <Text style={styles.headerTitle}> Spicy Arrabiata Penne</Text>
+            <Text style={styles.headerTitle}>{title}</Text>
             <Text style={{ width: 32 }} />
         </View>
     );

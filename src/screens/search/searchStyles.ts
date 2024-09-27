@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     },
 
     image: {
-        width: "50%",
+        flex: 1,
         objectFit: "cover",
         borderRadius: 20,
     },
