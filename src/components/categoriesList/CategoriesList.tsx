@@ -1,6 +1,6 @@
-import { View, Text, TouchableOpacity, ScrollView, FlatList, Image } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
 import styles from "./categoriesLinkStyles";
-import React, { useState } from "react";
+import React from "react";
 
 const list = [
     {

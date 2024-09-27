@@ -1,4 +1,4 @@
-import { View, Text, TouchableHighlight } from "react-native";
+import { View, Text, TouchableHighlight, TouchableOpacity } from "react-native";
 import styles from "./countryTagsStyles";
 import React, { useState } from "react";
 
@@ -115,9 +115,9 @@ function Closed({ setIsOpen }: CountryTagsContentProps) {
             <View style={styles.listContainer}>
                 {smalList.map((item, index) => {
                     return (
-                        <Text style={styles.listItem} key={index}>
-                            {item.strArea}
-                        </Text>
+                        <TouchableOpacity key={index} activeOpacity={0.8}>
+                            <Text style={styles.listItem}>{item.strArea}</Text>
+                        </TouchableOpacity>
                     );
                 })}
             </View>
@@ -134,9 +134,9 @@ function Opened({ setIsOpen }: CountryTagsContentProps) {
             <View style={styles.listContainer}>
                 {list.map((item, index) => {
                     return (
-                        <Text style={styles.listItem} key={index}>
-                            {item.strArea}
-                        </Text>
+                        <TouchableOpacity key={index} activeOpacity={0.8}>
+                            <Text style={styles.listItem}>{item.strArea}</Text>
+                        </TouchableOpacity>
                     );
                 })}
             </View>
