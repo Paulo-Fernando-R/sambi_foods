@@ -7,6 +7,8 @@ import appColors from "../../services/appColors";
 import { NavigationHelpers, ParamListBase } from "@react-navigation/native";
 import { StackNavigationEventMap } from "@react-navigation/stack";
 
+import Header from "../../components/header/Header";
+
 type SearchProps = {
     navigation: NavigationHelpers<ParamListBase, StackNavigationEventMap>;
 };
@@ -17,11 +19,7 @@ export default function Search({ navigation }: SearchProps) {
     }
     return (
         <View style={styles.searchContainer}>
-            <View style={styles.header}>
-                <BackButton onPress={() => {}} />
-                <Text style={styles.headerTitle}> Spicy Arrabiata Penne</Text>
-                <Text style={{ width: 32 }} />
-            </View>
+            <Header goBack={() => {}} />
 
             <FlatList
                 data={list}
