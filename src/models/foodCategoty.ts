@@ -3,4 +3,8 @@ export default interface FoodCategory {
     strCategory: string;
     strCategoryThumb: string;
     strCategoryDescription: string;
-  }
+}
+
+export interface FoodCountry {
+    strArea: "American";
+}

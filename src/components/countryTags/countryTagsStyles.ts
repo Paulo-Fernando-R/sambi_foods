@@ -12,6 +12,11 @@ const styles = StyleSheet.create({
         color: appColors.primary,
     },
 
+    skeleton:{
+        height: 150,
+        overflow: 'hidden'
+    },
+
     listContainer: {
         flexDirection: "row",
         gap: 12,

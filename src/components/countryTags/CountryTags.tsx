@@ -1,113 +1,43 @@
 import { View, Text, TouchableHighlight, TouchableOpacity } from "react-native";
 import styles from "./countryTagsStyles";
 import React, { useState } from "react";
+import { FoodCountry } from "../../models/foodCategoty";
+import { Code } from "react-content-loader/native";
+import appColors from "../../styles/appColors";
 
-const list = [
-    {
-        strArea: "American",
-    },
-    {
-        strArea: "British",
-    },
-    {
-        strArea: "Canadian",
-    },
-    {
-        strArea: "Chinese",
-    },
-    {
-        strArea: "Croatian",
-    },
-    {
-        strArea: "Dutch",
-    },
-    {
-        strArea: "Egyptian",
-    },
-    {
-        strArea: "Filipino",
-    },
-    {
-        strArea: "French",
-    },
-    {
-        strArea: "Greek",
-    },
-    {
-        strArea: "Indian",
-    },
-    {
-        strArea: "Irish",
-    },
-    {
-        strArea: "Italian",
-    },
-    {
-        strArea: "Jamaican",
-    },
-    {
-        strArea: "Japanese",
-    },
-    {
-        strArea: "Kenyan",
-    },
-    {
-        strArea: "Malaysian",
-    },
-    {
-        strArea: "Mexican",
-    },
-    {
-        strArea: "Moroccan",
-    },
-    {
-        strArea: "Polish",
-    },
-    {
-        strArea: "Portuguese",
-    },
-    {
-        strArea: "Russian",
-    },
-    {
-        strArea: "Spanish",
-    },
-    {
-        strArea: "Thai",
-    },
-    {
-        strArea: "Tunisian",
-    },
-    {
-        strArea: "Turkish",
-    },
-    {
-        strArea: "Ukrainian",
-    },
-    {
-        strArea: "Unknown",
-    },
-    {
-        strArea: "Vietnamese",
-    },
-];
+type CountryTagsProps = {
+    isLoading: boolean | undefined;
+    list: FoodCountry[] | undefined;
+};
 
 type CountryTagsContentProps = {
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    list: FoodCountry[];
 };
 
-export default function CountryTags() {
+export default function CountryTags({ isLoading, list }: CountryTagsProps) {
     const [isOpen, setIsOpen] = useState(false);
+
+    if (isLoading || !list) {
+        return (
+            <View style={styles.container}>
+                <Text style={styles.title}>Por país</Text>
+
+                <CountryTagsSkeleton />
+            </View>
+        );
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Por país</Text>
 
-            {isOpen ? <Opened setIsOpen={setIsOpen} /> : <Closed setIsOpen={setIsOpen} />}
+            {isOpen ? <Opened setIsOpen={setIsOpen} list={list} /> : <Closed setIsOpen={setIsOpen} list={list} />}
         </View>
     );
 }
 
-function Closed({ setIsOpen }: CountryTagsContentProps) {
+function Closed({ setIsOpen, list }: CountryTagsContentProps) {
     const smalList = list.slice(0, Math.floor(list.length / 2));
 
     return (
@@ -128,7 +58,7 @@ function Closed({ setIsOpen }: CountryTagsContentProps) {
     );
 }
 
-function Opened({ setIsOpen }: CountryTagsContentProps) {
+function Opened({ setIsOpen, list }: CountryTagsContentProps) {
     return (
         <View>
             <View style={styles.listContainer}>
@@ -143,6 +73,15 @@ function Opened({ setIsOpen }: CountryTagsContentProps) {
             <TouchableHighlight onPress={() => setIsOpen(false)} underlayColor={""}>
                 <Text style={styles.actionButton}>Ver menos</Text>
             </TouchableHighlight>
+        </View>
+    );
+}
+
+function CountryTagsSkeleton() {
+    return (
+        <View style={styles.skeleton}>
+            <Code backgroundColor={appColors.textMediumLight} foregroundColor={appColors.skeletonForeground} />
+            <Code backgroundColor={appColors.textMediumLight} foregroundColor={appColors.skeletonForeground} />
         </View>
     );
 }
