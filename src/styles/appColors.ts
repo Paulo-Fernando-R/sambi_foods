@@ -8,6 +8,7 @@ const bgLight = "#F5F5F5";
 const textMediumLight = "#E3E3E3";
 const bgIcon = "#F2D2B7";
 const bgTags = "rgba(89, 89, 89, 0.8)";
+const skeletonForeground = '#D2D2D2';
 
 const appColors = {
     primary,
@@ -20,6 +21,7 @@ const appColors = {
     textMediumLight,
     bgIcon,
     bgTags,
+    skeletonForeground
 };
 
 export default appColors;

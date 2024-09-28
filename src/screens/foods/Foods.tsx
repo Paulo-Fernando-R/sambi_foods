@@ -12,16 +12,12 @@ export default function Foods() {
     const controller = new FoodsController();
     const ref = useRef<TextInput>(null);
 
-    const foodRepository = new FoodRepository();
-
     const { data, error, isLoading, isFetching, isRefetching } = useQuery({
         queryKey: ["category"],
         queryFn:() => controller.getCategories(),
     });
 
-    console.log(data);
-
-    if (!data || error) return null;
+   // if (!data || error) return null;
 
     return (
         <View style={styles.screenContainer}>
@@ -29,7 +25,7 @@ export default function Foods() {
             <SearchInput placeholder="Pesquisar receitas" inputRef={ref} />
             <ScrollView style={styles.scrollArea} contentContainerStyle={styles.scrollAreaContent}>
                 <CountryTags />
-                <CategoriesList list={data} />
+                <CategoriesList list={data!} isLoading={isLoading}/>
             </ScrollView>
         </View>
     );
