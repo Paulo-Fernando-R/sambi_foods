@@ -6,8 +6,14 @@ import CountryTags from "../../components/countryTags/CountryTags";
 import CategoriesList from "../../components/categoriesList/CategoriesList";
 import { useQuery } from "@tanstack/react-query";
 import FoodsController from "./foodsController";
+import { FoodsNavigationProp, FoodsRouteProp } from "../../types/navigationTypes";
 
-export default function Foods() {
+type FoodsHomeProps = {
+    navigation: FoodsNavigationProp;
+    route: FoodsRouteProp;
+};
+
+export default function Foods({ navigation, route }: FoodsHomeProps) {
     const controller = new FoodsController();
     const ref = useRef<TextInput>(null);
 
