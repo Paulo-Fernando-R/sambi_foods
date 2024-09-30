@@ -6,7 +6,7 @@ import Favorite from "../../components/favorite/Favorite";
 import { FoodsDetailsRouteProp, FoodsNavigationProp } from "../../types/navigationTypes";
 import DetailsController from "./detailsController";
 import { useQuery } from "@tanstack/react-query";
-import ContentLoader, { List, Rect, Code, Facebook } from "react-content-loader/native";
+import ContentLoader, {  Rect, Code } from "react-content-loader/native";
 import appColors from "../../styles/appColors";
 
 type DetailsProps = {
