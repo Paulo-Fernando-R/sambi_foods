@@ -30,6 +30,8 @@ export default class TranslateServive implements ItranslateService {
             Object.defineProperty(fobj, keys[i], {
                 value: values[i],
                 writable: true,
+                enumerable: true,
+                configurable: true
             });
         }
 

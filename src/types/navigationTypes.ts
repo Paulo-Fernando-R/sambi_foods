@@ -10,6 +10,7 @@ export type FoodsRouterParamList = {
     };
     FoodsDetails: {
         id: number;
+        name: string
     };
 };
 

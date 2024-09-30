@@ -16,7 +16,7 @@ type SearchProps = {
 };
 type SearchItemProps = {
     data: Food;
-    navigate(id: number | string): void;
+    navigate(id: number | string, name: string): void;
 };
 
 export default function Search({ navigation, route }: SearchProps) {
@@ -26,9 +26,10 @@ export default function Search({ navigation, route }: SearchProps) {
     function goBack() {
         navigation.goBack();
     }
-    function navigate(id: number | string) {
+    function navigate(id: number | string, name: string) {
         navigation.navigate("FoodsDetails", {
             id: Number.parseInt(id.toString()),
+            name: name,
         });
     }
 
@@ -67,7 +68,11 @@ function SearchItem({ data, navigate }: SearchItemProps) {
     let tags = controller.tagsHandler(data?.strTags);
 
     return (
-        <TouchableOpacity style={styles.searchItemContainer} activeOpacity={0.8} onPress={() => navigate(data.idMeal)}>
+        <TouchableOpacity
+            style={styles.searchItemContainer}
+            activeOpacity={0.8}
+            onPress={() => navigate(data.idMeal, data.strMeal)}
+        >
             <View style={styles.itemTextConatiner}>
                 <View style={styles.itemTestTagContainer}>
                     {tags && (

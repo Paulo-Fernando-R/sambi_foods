@@ -15,6 +15,25 @@ export default class FoodRepository implements IfoodRepository {
         this.axios = axiosInstance(RecipeType.food);
         this.translate = new TranslateServive();
     }
+    async searchById(id: number | string): Promise<Food> {
+        const response = await this.axios.get("/lookup.php?i=" + id);
+
+        if (!response) {
+            throw new Error("internal server error", { cause: "500" });
+        }
+        if (response.status !== 200) {
+            throw new Error(response.statusText, { cause: response.status });
+        }
+
+        const data = response.data.meals[0] as Food;
+
+        const translated = await this.translate.translate<Food>(data);
+
+        if (translated) {
+            return translated;
+        }
+        return data;
+    }
 
     async searchByName(query: string): Promise<Food[]> {
         const response = await this.axios.get("/search.php?s=" + query);

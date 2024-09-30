@@ -8,4 +8,5 @@ export default interface IfoodRepository {
     searchByName(query: string): Promise<Food[]>;
     searchByArea(query: string): Promise<Food[]>;
     searchByCategory(query: string): Promise<Food[]>;
+    searchById(id: number | string): Promise<Food>;
 }
