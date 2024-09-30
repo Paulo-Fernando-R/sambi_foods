@@ -4,19 +4,26 @@ import React, { useState } from "react";
 import { FoodCountry } from "../../models/foodCategoty";
 import { Code } from "react-content-loader/native";
 import appColors from "../../styles/appColors";
+import { FoodsNavigationProp } from "../../types/navigationTypes";
 
 type CountryTagsProps = {
     isLoading: boolean | undefined;
     list: FoodCountry[] | undefined;
+    navigation: FoodsNavigationProp;
 };
 
 type CountryTagsContentProps = {
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
     list: FoodCountry[];
+    navigate(tag: string): void;
 };
 
-export default function CountryTags({ isLoading, list }: CountryTagsProps) {
+export default function CountryTags({ isLoading, list, navigation }: CountryTagsProps) {
     const [isOpen, setIsOpen] = useState(false);
+
+    function navigate(tag: string) {
+        navigation.navigate("FoodsSearch", { query: tag });
+    }
 
     if (isLoading || !list) {
         return (
@@ -32,12 +39,16 @@ export default function CountryTags({ isLoading, list }: CountryTagsProps) {
         <View style={styles.container}>
             <Text style={styles.title}>Por país</Text>
 
-            {isOpen ? <Opened setIsOpen={setIsOpen} list={list} /> : <Closed setIsOpen={setIsOpen} list={list} />}
+            {isOpen ? (
+                <Opened setIsOpen={setIsOpen} list={list} navigate={navigate} />
+            ) : (
+                <Closed setIsOpen={setIsOpen} list={list} navigate={navigate} />
+            )}
         </View>
     );
 }
 
-function Closed({ setIsOpen, list }: CountryTagsContentProps) {
+function Closed({ setIsOpen, list, navigate }: CountryTagsContentProps) {
     const smalList = list.slice(0, Math.floor(list.length / 2));
 
     return (
@@ -45,7 +56,7 @@ function Closed({ setIsOpen, list }: CountryTagsContentProps) {
             <View style={styles.listContainer}>
                 {smalList.map((item, index) => {
                     return (
-                        <TouchableOpacity key={index} activeOpacity={0.8}>
+                        <TouchableOpacity key={index} activeOpacity={0.8} onPress={() => navigate(item.strArea)}>
                             <Text style={styles.listItem}>{item.strArea}</Text>
                         </TouchableOpacity>
                     );
@@ -58,13 +69,13 @@ function Closed({ setIsOpen, list }: CountryTagsContentProps) {
     );
 }
 
-function Opened({ setIsOpen, list }: CountryTagsContentProps) {
+function Opened({ setIsOpen, list, navigate }: CountryTagsContentProps) {
     return (
         <View>
             <View style={styles.listContainer}>
                 {list.map((item, index) => {
                     return (
-                        <TouchableOpacity key={index} activeOpacity={0.8}>
+                        <TouchableOpacity key={index} activeOpacity={0.8} onPress={() => navigate(item.strArea)}>
                             <Text style={styles.listItem}>{item.strArea}</Text>
                         </TouchableOpacity>
                     );

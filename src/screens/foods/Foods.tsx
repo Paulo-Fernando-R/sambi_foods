@@ -29,10 +29,10 @@ export default function Foods({ navigation, route }: FoodsHomeProps) {
     return (
         <View style={styles.screenContainer}>
             <Text style={styles.title}>Encontre as melhores receitas</Text>
-            <SearchInput placeholder="Pesquisar receitas" inputRef={ref} />
+            <SearchInput placeholder="Pesquisar receitas" inputRef={ref} navigation={navigation}/>
             <ScrollView style={styles.scrollArea} contentContainerStyle={styles.scrollAreaContent}>
-                <CountryTags isLoading={isLoading} list={data?.countries} />
-                <CategoriesList list={data?.categories} isLoading={isLoading} />
+                <CountryTags isLoading={isLoading} list={data?.countries} navigation={navigation} />
+                <CategoriesList list={data?.categories} isLoading={isLoading} navigation={navigation} />
             </ScrollView>
         </View>
     );

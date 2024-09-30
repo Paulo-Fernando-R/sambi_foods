@@ -4,18 +4,26 @@ import React from "react";
 import FoodCategory from "../../models/foodCategoty";
 import ContentLoader, { Rect } from "react-content-loader/native";
 import appColors from "../../styles/appColors";
+import { FoodsNavigationProp } from "../../types/navigationTypes";
 
 type CategoriesListProps = {
     list: FoodCategory[] | undefined;
     isLoading: boolean | undefined;
+    navigation: FoodsNavigationProp;
 };
 
-export default function CategoriesList({ list, isLoading }: CategoriesListProps) {
+type CategoryItemProps = { data: FoodCategory; navigate(tag: string): void };
+
+export default function CategoriesList({ list, isLoading, navigation }: CategoriesListProps) {
     let aux: string[] = [];
     if (isLoading || !list) {
         aux = ["", "", "", "", "", "", "", "", "", "", "", ""];
     }
-    
+
+    function navigate(tag: string) {
+        navigation.navigate("FoodsSearch", { query: tag });
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Categorias</Text>
@@ -25,15 +33,7 @@ export default function CategoriesList({ list, isLoading }: CategoriesListProps)
                           return <CategoryItemSkeleton key={index} />;
                       })
                     : list.map((item, index) => {
-                          return (
-                              <CategoryItem
-                                  idCategory={item.idCategory}
-                                  strCategory={item.strCategory}
-                                  strCategoryDescription={item.strCategoryDescription}
-                                  strCategoryThumb={item.strCategoryThumb}
-                                  key={index}
-                              />
-                          );
+                          return <CategoryItem data={item} navigate={navigate} key={index} />;
                       })}
             </ScrollView>
         </View>
@@ -54,11 +54,11 @@ function CategoryItemSkeleton() {
     );
 }
 
-function CategoryItem(props: FoodCategory) {
+function CategoryItem({ data, navigate }: CategoryItemProps) {
     return (
-        <TouchableOpacity style={styles.listItem} activeOpacity={0.8}>
-            <Image style={styles.image} src={props.strCategoryThumb} />
-            <Text style={styles.categoryName}>{props.strCategory}</Text>
+        <TouchableOpacity style={styles.listItem} activeOpacity={0.8} onPress={() => navigate(data.idCategory)}>
+            <Image style={styles.image} src={data.strCategoryThumb} />
+            <Text style={styles.categoryName}>{data.strCategory}</Text>
         </TouchableOpacity>
     );
 }
