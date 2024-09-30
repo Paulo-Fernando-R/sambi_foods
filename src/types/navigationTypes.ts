@@ -8,9 +8,12 @@ export type FoodsRouterParamList = {
         query: string;
         type: SearchType;
     };
-    FoodsDetails: undefined;
+    FoodsDetails: {
+        id: number;
+    };
 };
 
 export type FoodsNavigationProp = StackNavigationProp<FoodsRouterParamList, "FoodsHome">;
 export type FoodsHomeRouteProp = RouteProp<FoodsRouterParamList, "FoodsHome">;
 export type FoodsSearchRouteProp = RouteProp<FoodsRouterParamList, "FoodsSearch">;
+export type FoodsDetailsRouteProp = RouteProp<FoodsRouterParamList, "FoodsDetails">;
