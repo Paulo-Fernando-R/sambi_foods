@@ -16,6 +16,7 @@ type SearchProps = {
 };
 type SearchItemProps = {
     data: Food;
+    navigate(id: number | string): void;
 };
 
 export default function Search({ navigation, route }: SearchProps) {
@@ -24,6 +25,11 @@ export default function Search({ navigation, route }: SearchProps) {
 
     function goBack() {
         navigation.goBack();
+    }
+    function navigate(id: number | string) {
+        navigation.navigate("FoodsDetails", {
+            id: Number.parseInt(id.toString()),
+        });
     }
 
     const { data, isLoading, isError } = useQuery({
@@ -48,7 +54,7 @@ export default function Search({ navigation, route }: SearchProps) {
                     data={data}
                     contentContainerStyle={styles.listConatiner}
                     renderItem={(item) => {
-                        return <SearchItem data={item.item} />;
+                        return <SearchItem data={item.item} navigate={navigate} />;
                     }}
                 />
             )}
@@ -56,12 +62,12 @@ export default function Search({ navigation, route }: SearchProps) {
     );
 }
 
-function SearchItem({ data }: SearchItemProps) {
+function SearchItem({ data, navigate }: SearchItemProps) {
     const controller = new SearchController();
     let tags = controller.tagsHandler(data?.strTags);
 
     return (
-        <TouchableOpacity style={styles.searchItemContainer} activeOpacity={0.8}>
+        <TouchableOpacity style={styles.searchItemContainer} activeOpacity={0.8} onPress={() => navigate(data.idMeal)}>
             <View style={styles.itemTextConatiner}>
                 <View style={styles.itemTestTagContainer}>
                     {tags && (
