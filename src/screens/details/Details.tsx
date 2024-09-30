@@ -1,15 +1,22 @@
 import React from "react";
-import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, Image, ScrollView, TouchableOpacity, Dimensions } from "react-native";
 import styles from "./detailsStyles";
 import Header from "../../components/header/Header";
 import Favorite from "../../components/favorite/Favorite";
 import { FoodsDetailsRouteProp, FoodsNavigationProp } from "../../types/navigationTypes";
 import DetailsController from "./detailsController";
 import { useQuery } from "@tanstack/react-query";
+import ContentLoader, { List, Rect, Code, Facebook } from "react-content-loader/native";
+import appColors from "../../styles/appColors";
 
 type DetailsProps = {
     navigation: FoodsNavigationProp;
     route: FoodsDetailsRouteProp;
+};
+
+type DetailsSkeletonProps = {
+    goBack(): void;
+    name: string;
 };
 
 export default function Details({ navigation, route }: DetailsProps) {
@@ -25,13 +32,10 @@ export default function Details({ navigation, route }: DetailsProps) {
     });
 
     if (isLoading || !data) {
-        return null;
+        return <DetailsSkeleton goBack={goBack} name={name} />;
     }
 
-    const ingredient = Object.entries(data)
-        .filter((entry) => entry[0].includes("strIngredient"))
-        .filter((entry) => entry[1])
-        .map((e) => e[1]);
+    const ingredient = controller.listIngredients(data);
 
     return (
         <View style={styles.DetailsContainer}>
@@ -61,6 +65,36 @@ export default function Details({ navigation, route }: DetailsProps) {
                     <Text style={styles.buttonText}>Começar a cozinhar</Text>
                 </TouchableOpacity>
             </ScrollView>
+        </View>
+    );
+}
+
+function DetailsSkeleton({ goBack, name }: DetailsSkeletonProps) {
+    return (
+        <View style={styles.DetailsContainer}>
+            <Header goBack={goBack} title={name} />
+
+            <View style={{ borderRadius: 20, overflow: "hidden" }}>
+                <ContentLoader
+                    style={styles.listItemSkeleton}
+                    backgroundColor={appColors.textMediumLight}
+                    foregroundColor={appColors.skeletonForeground}
+                >
+                    <Rect x={0} y={0} width={Dimensions.get("window").width} height={380} />
+                </ContentLoader>
+            </View>
+
+            <Code backgroundColor={appColors.textMediumLight} foregroundColor={appColors.skeletonForeground} />
+
+            <View style={{ borderRadius: 20, overflow: "hidden" }}>
+                <ContentLoader
+                    style={styles.buttonSkeleton}
+                    backgroundColor={appColors.textMediumLight}
+                    foregroundColor={appColors.skeletonForeground}
+                >
+                    <Rect x={0} y={0} width={Dimensions.get("window").width} height={80} />
+                </ContentLoader>
+            </View>
         </View>
     );
 }

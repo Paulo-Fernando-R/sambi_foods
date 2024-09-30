@@ -72,7 +72,16 @@ const styles = StyleSheet.create({
     buttonText: {
         ...appTexts.titleMediumSemiBold,
         color: appColors.textLight
-    }
+    },
+    listItemSkeleton: {
+        height: 380,
+        overflow: 'hidden'
+    },
+
+    buttonSkeleton: {
+        height: 80,
+        overflow: 'hidden'
+    },
 });
 
 export default styles;
