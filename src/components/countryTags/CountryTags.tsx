@@ -5,6 +5,7 @@ import { FoodCountry } from "../../models/foodCategoty";
 import { Code } from "react-content-loader/native";
 import appColors from "../../styles/appColors";
 import { FoodsNavigationProp } from "../../types/navigationTypes";
+import SearchType from "../../enums/searchType";
 
 type CountryTagsProps = {
     isLoading: boolean | undefined;
@@ -22,7 +23,7 @@ export default function CountryTags({ isLoading, list, navigation }: CountryTags
     const [isOpen, setIsOpen] = useState(false);
 
     function navigate(tag: string) {
-        navigation.navigate("FoodsSearch", { query: tag });
+        navigation.navigate("FoodsSearch", { query: tag, type:SearchType.area });
     }
 
     if (isLoading || !list) {

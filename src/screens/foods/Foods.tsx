@@ -6,14 +6,13 @@ import CountryTags from "../../components/countryTags/CountryTags";
 import CategoriesList from "../../components/categoriesList/CategoriesList";
 import { useQuery } from "@tanstack/react-query";
 import FoodsController from "./foodsController";
-import { FoodsNavigationProp, FoodsRouteProp } from "../../types/navigationTypes";
+import { FoodsNavigationProp } from "../../types/navigationTypes";
 
 type FoodsHomeProps = {
     navigation: FoodsNavigationProp;
-    route: FoodsRouteProp;
 };
 
-export default function Foods({ navigation, route }: FoodsHomeProps) {
+export default function Foods({ navigation }: FoodsHomeProps) {
     const controller = new FoodsController();
     const ref = useRef<TextInput>(null);
 
@@ -29,7 +28,7 @@ export default function Foods({ navigation, route }: FoodsHomeProps) {
     return (
         <View style={styles.screenContainer}>
             <Text style={styles.title}>Encontre as melhores receitas</Text>
-            <SearchInput placeholder="Pesquisar receitas" inputRef={ref} navigation={navigation}/>
+            <SearchInput placeholder="Pesquisar receitas" inputRef={ref} navigation={navigation} />
             <ScrollView style={styles.scrollArea} contentContainerStyle={styles.scrollAreaContent}>
                 <CountryTags isLoading={isLoading} list={data?.countries} navigation={navigation} />
                 <CategoriesList list={data?.categories} isLoading={isLoading} navigation={navigation} />

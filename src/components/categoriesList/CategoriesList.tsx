@@ -5,6 +5,7 @@ import FoodCategory from "../../models/foodCategoty";
 import ContentLoader, { Rect } from "react-content-loader/native";
 import appColors from "../../styles/appColors";
 import { FoodsNavigationProp } from "../../types/navigationTypes";
+import SearchType from "../../enums/searchType";
 
 type CategoriesListProps = {
     list: FoodCategory[] | undefined;
@@ -21,7 +22,7 @@ export default function CategoriesList({ list, isLoading, navigation }: Categori
     }
 
     function navigate(tag: string) {
-        navigation.navigate("FoodsSearch", { query: tag });
+        navigation.navigate("FoodsSearch", { query: tag, type: SearchType.category });
     }
 
     return (
@@ -56,7 +57,7 @@ function CategoryItemSkeleton() {
 
 function CategoryItem({ data, navigate }: CategoryItemProps) {
     return (
-        <TouchableOpacity style={styles.listItem} activeOpacity={0.8} onPress={() => navigate(data.idCategory)}>
+        <TouchableOpacity style={styles.listItem} activeOpacity={0.8} onPress={() => navigate(data.strCategory)}>
             <Image style={styles.image} src={data.strCategoryThumb} />
             <Text style={styles.categoryName}>{data.strCategory}</Text>
         </TouchableOpacity>

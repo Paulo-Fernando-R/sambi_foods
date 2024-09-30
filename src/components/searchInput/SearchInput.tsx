@@ -4,6 +4,7 @@ import React from "react";
 import appColors from "../../styles/appColors";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { FoodsNavigationProp } from "../../types/navigationTypes";
+import SearchType from "../../enums/searchType";
 
 type SearchInputProps = {
     placeholder: string;
@@ -16,7 +17,7 @@ export default function SearchInput({ placeholder, inputRef, navigation }: Searc
         if (tag.length < 3) {
             return;
         }
-        navigation.navigate("FoodsSearch", { query: tag });
+        navigation.navigate("FoodsSearch", { query: tag, type: SearchType.name });
     }
 
     return (

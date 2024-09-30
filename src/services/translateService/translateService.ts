@@ -36,11 +36,10 @@ export default class TranslateServive implements ItranslateService {
         const res = fobj as T | undefined;
 
         return res;
-        //console.log(res?.idCategory, res?.strCategoryDescription, res?.strCategoryThumb);
     }
 
     async translateList<T>(list: T[]): Promise<T[] | undefined> {
-        const repository = new TranslateRepository();
+        
         if (!list) return;
 
         const res: T[] = [];

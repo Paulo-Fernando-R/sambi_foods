@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import appColors from "../../styles/appColors";
 import appTexts from "../../styles/appText";
 
@@ -62,6 +62,11 @@ const styles = StyleSheet.create({
         flex: 1,
         objectFit: "cover",
         borderRadius: 20,
+    },
+    listItemSkeleton: {
+        borderRadius: 16,
+        height: 120,
+        overflow: 'hidden'
     },
 });
 
