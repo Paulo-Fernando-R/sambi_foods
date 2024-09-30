@@ -1,4 +1,4 @@
-import { View, Text, TextInput, ScrollView } from "react-native";
+import { View, Text, TextInput, ScrollView, Alert } from "react-native";
 import styles from "./foodsStyles";
 import React, { useRef } from "react";
 import SearchInput from "../../components/searchInput/SearchInput";
@@ -15,6 +15,10 @@ export default function Foods() {
         queryKey: ["resources"],
         queryFn: () => controller.getResources(),
     });
+
+    if (error) {
+        Alert.alert("Ocorreu um erro", error.message);
+    }
 
     return (
         <View style={styles.screenContainer}>
