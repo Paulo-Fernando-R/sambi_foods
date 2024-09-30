@@ -6,7 +6,7 @@ import Favorite from "../../components/favorite/Favorite";
 import { FoodsDetailsRouteProp, FoodsNavigationProp } from "../../types/navigationTypes";
 import DetailsController from "./detailsController";
 import { useQuery } from "@tanstack/react-query";
-import ContentLoader, {  Rect, Code } from "react-content-loader/native";
+import ContentLoader, { Rect, Code } from "react-content-loader/native";
 import appColors from "../../styles/appColors";
 
 type DetailsProps = {
@@ -24,6 +24,10 @@ export default function Details({ navigation, route }: DetailsProps) {
     const controller = new DetailsController();
     function goBack() {
         navigation.goBack();
+    }
+
+    function navigate() {
+        navigation.navigate("FoodsCook", { recipe: data! });
     }
 
     const { data, isLoading } = useQuery({
@@ -61,7 +65,7 @@ export default function Details({ navigation, route }: DetailsProps) {
                     <Text style={styles.paragraph}>{ingredient.join(" | ")}</Text>
                 </View>
 
-                <TouchableOpacity style={styles.button} activeOpacity={0.8}>
+                <TouchableOpacity style={styles.button} activeOpacity={0.8} onPress={navigate}>
                     <Text style={styles.buttonText}>Começar a cozinhar</Text>
                 </TouchableOpacity>
             </ScrollView>
