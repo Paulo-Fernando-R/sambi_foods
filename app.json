@@ -18,11 +18,13 @@
       "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff",
-      }
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.nome123.sambi_foods"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     }
-  }
+  },
+  "plugins": ["@react-native-google-signin/google-signin"]
 }
