@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         gap: 30,
         justifyContent: "flex-start",
         overflow: "visible",
-        height: Dimensions.get('window').height - 60
+        height: Dimensions.get('screen').height - 60
     },
 
     webViweWrapper: {
