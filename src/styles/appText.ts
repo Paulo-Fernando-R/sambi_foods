@@ -43,6 +43,17 @@ const paragraphMediumRegular: StyleProp<TextStyle> = {
     fontFamily: "Roboto",
 };
 
+const loginPageSubtitle: StyleProp<TextStyle> = {
+    fontSize: 20,
+    fontWeight: "light",
+    fontFamily: "Roboto",
+};
+const loginPageTitle: StyleProp<TextStyle> = {
+    fontSize: 28,
+    fontWeight: "bold",
+    fontFamily: "Roboto",
+};
+
 const appTexts = {
     titleLargeMedium,
     paragraphLargeRegular,
@@ -51,6 +62,8 @@ const appTexts = {
     paragraphExtraSmallRegular,
     titleMediumSemiBold,
     paragraphMediumRegular,
+    loginPageSubtitle,
+    loginPageTitle,
 };
 
 export default appTexts;

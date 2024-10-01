@@ -1,14 +1,28 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { View, Text } from "react-native";
 import CustomTabNavigation from "../components/customTabNavigation/CustomTabNavigation";
 import appColors from "../styles/appColors";
 import FoodsRouter from "./FoodsRouter";
-import Foods from "../screens/foods/Foods";
+import Login from "../screens/login/Login";
 
 const Tab = createBottomTabNavigator();
 
-export default function Router() {
+const Stack = createStackNavigator();
+
+function AuthRouter() {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="Login" component={Login} />
+                {}
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+}
+
+function AppRouter() {
     return (
         <NavigationContainer>
             <Tab.Navigator
@@ -27,6 +41,15 @@ export default function Router() {
             </Tab.Navigator>
         </NavigationContainer>
     );
+}
+
+export default function Router() {
+    const isAuth = false;
+
+    if (isAuth) {
+        return <AppRouter />;
+    }
+    return <AuthRouter />;
 }
 
 function Test() {
