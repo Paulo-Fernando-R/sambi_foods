@@ -5,7 +5,6 @@ import appColors from "../../styles/appColors";
 const styles = StyleSheet.create({
     cookContainer: {
         paddingTop: 48,
-        paddingHorizontal: 20,
         gap: 30,
         justifyContent: "flex-start",
         overflow: "visible",
@@ -13,9 +12,10 @@ const styles = StyleSheet.create({
 
     ingredients: {
         gap: 10,
+        paddingHorizontal: 20,
     },
     ingredientItem: {
-        width: 80,
+        width: 90,
         height: 120,
         backgroundColor: appColors.primaryLight,
         justifyContent: "center",
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
     },
     image: {
-        width: "100%",
+        width: 50,
         aspectRatio: "1/1",
     },
 
@@ -41,15 +41,20 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
     webViweWrapper: {
-        width: "100%",
-        height: 200, //Dimensions.get('window').height / 4.2,
+        height: 200,
         borderRadius: 12,
         overflow: "hidden",
+        marginHorizontal: 20,
+    },
+
+    titleWrapper:{
+        paddingHorizontal: 20
     },
 
     title: {
         ...appTexts.titleMediumSemiBold,
         color: appColors.primary,
+        paddingHorizontal: 20
     },
     webView: {
         flex: 1,
@@ -57,8 +62,8 @@ const styles = StyleSheet.create({
 
     talkList: {
         gap: 10,
-        //paddingBottom: 200
-        paddingBottom: 50,
+        paddingHorizontal: 20,
+        paddingBottom: 70,
     },
 
     talkItem: {

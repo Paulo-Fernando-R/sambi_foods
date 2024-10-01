@@ -6,7 +6,7 @@ import { WebView } from "react-native-webview";
 import { ScrollView } from "react-native-gesture-handler";
 import { FoodsCookRouteProp, FoodsNavigationProp } from "../../types/navigationTypes";
 import CookController from "./cookController";
-import Foundation from '@expo/vector-icons/Foundation';
+import Foundation from "@expo/vector-icons/Foundation";
 import appColors from "../../styles/appColors";
 import * as Speech from "expo-speech";
 
@@ -34,7 +34,10 @@ export default function Coock({ navigation, route }: CookProps) {
 
     return (
         <View style={styles.cookContainer}>
-            <Header goBack={() => navigation.goBack()} title="" />
+            <View style={styles.titleWrapper}>
+                <Header goBack={() => navigation.goBack()} title={recipe.strMeal} />
+            </View>
+
             <Text style={styles.title}>Separe os ingredientes</Text>
 
             <FlatList
