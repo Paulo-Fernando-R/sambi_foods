@@ -55,30 +55,30 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 
-    talkList:{
+    talkList: {
         gap: 10,
         //paddingBottom: 200
-        paddingBottom: 50
+        paddingBottom: 50,
     },
 
     talkItem: {
-     backgroundColor: appColors.bgIcon,
-     borderRadius: 20,
-     padding: 12,
-     alignItems: 'flex-end',
-     gap: 12
-
+        backgroundColor: appColors.bgIcon,
+        borderRadius: 20,
+        padding: 12,
+        alignItems: "flex-end",
+        gap: 12,
     },
 
     talkText: {
         ...appTexts.paragraphSmallRegular,
         color: appColors.textMedium,
-        width: '100%',
-        textAlign:'left'
+        width: "100%",
+        textAlign: "left",
     },
     talkButton: {
         flexDirection: "row",
-        gap: 12,
+        alignItems: "center",
+        gap: 8,
         paddingHorizontal: 12,
         paddingVertical: 4,
         backgroundColor: appColors.primaryLight,
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
 
     talkButtonText: {
         ...appTexts.paragraphSmallRegular,
-        color: appColors.textLight
+        color: appColors.textLight,
     },
 });
 

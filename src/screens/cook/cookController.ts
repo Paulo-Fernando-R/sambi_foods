@@ -13,7 +13,13 @@ export default class CookController {
     separateInstructions(text: string) {
         const lines = text.split("\r\n");
 
-        return lines;
+        return lines.filter((e) => e);
+    }
+
+    handleYtUrl(url: string) {
+        const aux = url.replace("/watch?v=", "/embed/");
+
+        return aux;
     }
 
     listIngredients(data: Food) {

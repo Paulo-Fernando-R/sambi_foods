@@ -4,9 +4,9 @@ import React from "react";
 import Header from "../../components/header/Header";
 import { WebView } from "react-native-webview";
 import { ScrollView } from "react-native-gesture-handler";
-import { FoodsCookRouteProp, FoodsNavigationProp, FoodsSearchRouteProp } from "../../types/navigationTypes";
+import { FoodsCookRouteProp, FoodsNavigationProp } from "../../types/navigationTypes";
 import CookController from "./cookController";
-import AntDesign from "@expo/vector-icons/AntDesign";
+import Foundation from '@expo/vector-icons/Foundation';
 import appColors from "../../styles/appColors";
 import * as Speech from "expo-speech";
 
@@ -30,12 +30,7 @@ export default function Coock({ navigation, route }: CookProps) {
     const ingredients = controller.listIngredients(recipe);
     const measures = controller.listMeasures(recipe);
     const lines = controller.separateInstructions(recipe.strInstructions);
-
-    function ytUrl(url: string) {
-        const aux = url.replace("/watch?v=", "/embed/");
-
-        return aux;
-    }
+    const ytUrl = controller.handleYtUrl(recipe.strYoutube ?? "");
 
     return (
         <View style={styles.cookContainer}>
@@ -48,28 +43,24 @@ export default function Coock({ navigation, route }: CookProps) {
                 horizontal={true}
                 renderItem={({ index, item }) => <IngredientsItem name={item} measure={measures[index]} />}
             />
-            <View style={styles.webViweWrapper}>
-                <WebView
-                    style={styles.webView}
-                    useWebView2={true}
-                    lis
-                    source={{
-                        uri: ytUrl(recipe.strYoutube ??''),
-                    }}
-                />
-            </View>
+            {ytUrl && (
+                <View style={styles.webViweWrapper}>
+                    <WebView
+                        style={styles.webView}
+                        useWebView2={true}
+                        lis
+                        source={{
+                            uri: ytUrl,
+                        }}
+                    />
+                </View>
+            )}
 
             <ScrollView style={{ height: 300 }} contentContainerStyle={styles.talkList}>
                 {lines.map((item, index) => (
                     <TalkItem text={item} key={index} />
                 ))}
             </ScrollView>
-
-            {/* <FlatList
-                contentContainerStyle={styles.talkList}
-                data={lines}
-                renderItem={({ item }) => <TalkItem text={item} />}
-            /> */}
         </View>
     );
 }
@@ -100,7 +91,7 @@ function TalkItem({ text }: TalkItemProps) {
             <Text style={styles.talkText}>{text}</Text>
             <TouchableOpacity style={styles.talkButton} activeOpacity={0.8} onPress={talk}>
                 <Text style={styles.talkButtonText}>Falar</Text>
-                <AntDesign name="sound" size={20} color={appColors.textLight} />
+                <Foundation name="sound" size={20} color={appColors.textLight} />
             </TouchableOpacity>
         </View>
     );
