@@ -12,7 +12,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nome123.sambi-foods"
     },
     "android": {
       "softwareKeyboardLayoutMode": "pan",
@@ -25,7 +26,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5af6203c-b1cd-436d-8c69-066cc5ad286b"
+      }
     }
   },
-  "plugins": ["@react-native-google-signin/google-signin"]
+  "plugins": [
+    "@react-native-google-signin/google-signin"
+  ]
 }
