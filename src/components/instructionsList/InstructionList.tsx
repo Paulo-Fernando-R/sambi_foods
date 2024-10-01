@@ -15,7 +15,7 @@ type TalkItemProps = {
 
 export default function InstructionList({ lines }: InstructionListProps) {
     return (
-        <ScrollView style={{ height: 300 }} contentContainerStyle={styles.talkList}>
+        <ScrollView contentContainerStyle={styles.talkList}>
             {lines.map((item, index) => (
                 <TalkItem text={item} key={index} />
             ))}

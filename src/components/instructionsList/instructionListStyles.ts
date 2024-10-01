@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import appTexts from "../../styles/appText";
 import appColors from "../../styles/appColors";
 
@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     talkList: {
         gap: 10,
         paddingHorizontal: 20,
-        paddingBottom: 70,
+        paddingBottom: 20,
     },
 
     talkItem: {

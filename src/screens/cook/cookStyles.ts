@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import appTexts from "../../styles/appText";
 import appColors from "../../styles/appColors";
 
@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
         gap: 30,
         justifyContent: "flex-start",
         overflow: "visible",
+        height: Dimensions.get('window').height - 60
     },
 
     webViweWrapper: {
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
     },
     webView: {
-        flex: 1,
+        //flex: 1,
     },
 });
 

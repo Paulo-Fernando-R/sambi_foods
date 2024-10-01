@@ -3,10 +3,14 @@ import appTexts from "../../styles/appText";
 import appColors from "../../styles/appColors";
 
 const styles = StyleSheet.create({
+    container: { maxHeight: 120, minHeight: 120 },
+
     ingredients: {
         gap: 10,
         paddingHorizontal: 20,
+        maxHeight: 120,
     },
+
     ingredientItem: {
         width: 90,
         height: 120,

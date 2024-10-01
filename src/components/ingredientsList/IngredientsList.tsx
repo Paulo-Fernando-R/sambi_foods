@@ -16,6 +16,7 @@ type IngredientItemProps = {
 export default function IngredientsList({ ingredients, measures, imgUrl }: IngredientsListProps) {
     return (
         <FlatList
+            style={styles.container}
             contentContainerStyle={styles.ingredients}
             data={ingredients}
             horizontal={true}
