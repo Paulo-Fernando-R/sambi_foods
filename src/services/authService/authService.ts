@@ -44,10 +44,10 @@ export default class AuthService implements IauthService {
             await GoogleSignin.hasPlayServices();
             const response = await GoogleSignin.signIn();
             if (isSuccessResponse(response)) {
-                setState(response);
                 this.save(response.data);
                 console.log(response);
             } else {
+                throw new Error("canceled");
                 // sign in was cancelled by user
             }
         } catch (error) {
@@ -61,10 +61,12 @@ export default class AuthService implements IauthService {
                         // Android only, play services not available or outdated
                         break;
                     default:
-                    // some other error happened
+                        // some other error happened
+                        throw error;
                 }
             } else {
                 // an error that's not related to google sign in occurred
+                throw error;
             }
         }
     }
