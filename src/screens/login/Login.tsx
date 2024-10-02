@@ -28,6 +28,7 @@ const signIn = async (setState: React.Dispatch<React.SetStateAction<SignInSucces
         }
     } catch (error) {
         if (isErrorWithCode(error)) {
+            console.log(error)
             switch (error.code) {
                 case statusCodes.IN_PROGRESS:
                     // operation (eg. sign in) already in progress
@@ -56,7 +57,7 @@ export default function Login() {
 
             <View style={styles.buttonContainer}>
                 <Text style={styles.buttonText}>Faça login com sua conta Google</Text>
-                <TouchableOpacity style={styles.button} activeOpacity={0.8}>
+                <TouchableOpacity style={styles.button} activeOpacity={0.8} onPress={() => signIn(setUserInfo)}>
                     <AntDesign name="google" size={20} color={appColors.textLight} />
                     <Text style={styles.buttonTitle}>LOGIN</Text>
                 </TouchableOpacity>
