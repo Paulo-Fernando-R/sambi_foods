@@ -15,6 +15,7 @@ export default class FoodRepository implements IfoodRepository {
     private firestore: IfirestoreService;
     private readonly categoryCollection: string;
     private readonly countryCollection: string;
+    private readonly foodCoolection: string;
 
     constructor() {
         this.axios = axiosInstance(RecipeType.food);
@@ -22,6 +23,7 @@ export default class FoodRepository implements IfoodRepository {
         this.firestore = new FirestorService();
         this.categoryCollection = "Categories";
         this.countryCollection = "Countries";
+        this.foodCoolection = "Foods";
     }
     async searchById(id: number | string): Promise<Food> {
         const response = await this.axios.get("/lookup.php?i=" + id);
@@ -33,11 +35,17 @@ export default class FoodRepository implements IfoodRepository {
             throw new Error(response.statusText, { cause: response.status });
         }
 
-        const data = response.data.meals[0] as Food;
+        const fireRes = await this.firestore.getDocByProperty<Food>(id.toString(), this.foodCoolection, "idMeal", "==");
 
+        if (fireRes.length > 0) {
+            return fireRes[0].data;
+        }
+
+        const data = response.data.meals[0] as Food;
         const translated = await this.translate.translate<Food>(data);
 
         if (translated) {
+            await this.firestore.addnewDoc<Food>(translated, this.foodCoolection);
             return translated;
         }
         return data;
@@ -49,18 +57,41 @@ export default class FoodRepository implements IfoodRepository {
         if (!response) {
             throw new Error("internal server error", { cause: "500" });
         }
+
         if (response.status !== 200) {
             throw new Error(response.statusText, { cause: response.status });
         }
 
         const data = response.data.meals as Food[];
+        const fireRes: Food[] = [];
+
+        for (let i = 0; i < data.length; i++) {
+            const res = await this.firestore.getDocByProperty<Food>(
+                data[i].idMeal,
+                this.foodCoolection,
+                "idMeal",
+                "=="
+            );
+            if (res.length > 0) fireRes.push(res[0].data);
+        }
+
+        const spliced = fireRes.map((e) => {
+            return data.splice(
+                data.findIndex((f) => f.idMeal === e.idMeal),
+                1
+            )[0];
+        });
 
         const translated = await this.translate.translateList<Food>(data);
 
         if (translated) {
-            return translated;
+            for (let i = 0; i < translated.length; i++) {
+                await this.firestore.addnewDoc<Food>(translated[i], this.foodCoolection);
+            }
+
+            return translated.concat(fireRes);
         }
-        return data;
+        return data.concat(spliced);
     }
 
     async searchByArea(query: string): Promise<Food[]> {
@@ -117,7 +148,7 @@ export default class FoodRepository implements IfoodRepository {
         const fireRes = await this.firestore.getCollection<FoodCountry>(this.countryCollection);
 
         if (fireRes.length > 0) {
-            return fireRes;
+            return fireRes.map((e) => e.data);
         }
 
         const data = response.data.meals as FoodCountry[];
@@ -148,7 +179,7 @@ export default class FoodRepository implements IfoodRepository {
         const fireRes = await this.firestore.getCollection<FoodCategory>(this.categoryCollection);
 
         if (fireRes.length > 0) {
-            return fireRes;
+            return fireRes.map((e) => e.data);
         }
 
         const data = response.data.categories as FoodCategory[];

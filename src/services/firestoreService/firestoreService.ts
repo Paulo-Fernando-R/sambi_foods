@@ -5,16 +5,22 @@ import { Operator } from "../../types/utilityTypes";
 export default class FirestorService implements IfirestoreService {
     async getCollection<T>(collection: string) {
         const response = await firestore().collection(collection).get();
-        const aux = response.docs.map((e) => e.data() as T);
-        //console.log(response.docs.map((e) => e.data()));
+        const aux = response.docs.map((e) => {
+            return {
+                data: e.data() as T,
+                id: e.id,
+            };
+        });
+       // console.log(response.docs.map((e) => e.data()));
         return aux;
     }
 
     async getDocById<T>(id: string, collection: string) {
         const response = await firestore().collection(collection).doc(id).get();
-        const aux = response.data() as T;
+        const aux = { data: response.data() as T, id: response.id };
         return aux;
     }
+
     async getDocByProperty<T>(
         valueToSearch: string,
         collection: string,
@@ -25,8 +31,13 @@ export default class FirestorService implements IfirestoreService {
             .collection(collection)
             .where(property.toString(), operator, valueToSearch)
             .get();
-        console.log(response.docs.map((e) => e.data()));
-        const aux = response.docs.map((e) => e.data() as T);
+       
+        const aux = response.docs.map((e) => {
+            return {
+                data: e.data() as T,
+                id: e.id,
+            };
+        });
 
         return aux;
     }
