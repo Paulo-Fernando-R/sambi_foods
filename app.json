@@ -32,6 +32,12 @@
                 "projectId": "5af6203c-b1cd-436d-8c69-066cc5ad286b"
             }
         },
-        "plugins": ["expo-secure-store", "@react-native-google-signin/google-signin"]
+        "plugins": [
+            "expo-secure-store",
+            "@react-native-google-signin/google-signin",
+            "@react-native-firebase/app",
+            "@react-native-firebase/auth",
+            "@react-native-firebase/crashlytics"
+        ]
     }
 }

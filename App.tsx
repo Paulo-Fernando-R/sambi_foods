@@ -6,17 +6,29 @@ import { StatusBar } from "expo-status-bar";
 import "./src/routes/gestureHandlerNative";
 import Router from "./src/routes/Router";
 import { useState } from "react";
+import FirestorService from "./src/services/firestoreService/firestoreService";
 
 const queryClient = new QueryClient();
 
 export default function App() {
-
     const service = new AuthService();
-  //  service.deleteItem()
+    //  service.deleteItem()
     const data = service.getItem();
 
     const [user, setUser] = useState<User | null>(data);
     const changeState = (user: User) => setUser(user);
+
+
+
+    async function teste() {
+        const service = new FirestorService();
+        // await service.getDocByUserId('')
+        // await service.getCollection()
+
+        //await service.getDocByProperty<User>('123456789', 'user', 'user.id', '==');
+    }
+
+    teste();
 
     return (
         <QueryClientProvider client={queryClient}>
