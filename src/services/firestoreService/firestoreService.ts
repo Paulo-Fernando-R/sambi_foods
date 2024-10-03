@@ -11,7 +11,7 @@ export default class FirestorService implements IfirestoreService {
                 id: e.id,
             };
         });
-       // console.log(response.docs.map((e) => e.data()));
+        // console.log(response.docs.map((e) => e.data()));
         return aux;
     }
 
@@ -31,7 +31,7 @@ export default class FirestorService implements IfirestoreService {
             .collection(collection)
             .where(property.toString(), operator, valueToSearch)
             .get();
-       
+
         const aux = response.docs.map((e) => {
             return {
                 data: e.data() as T,
@@ -43,7 +43,10 @@ export default class FirestorService implements IfirestoreService {
     }
 
     async addnewDoc<T extends { [x: string]: any }>(doc: T, collection: string) {
-        await firestore().collection(collection).doc().set(doc);
+      //  console.log(doc);
+        // await firestore().collection(collection).doc().set(doc)
+        const res = await firestore().collection(collection).add({a:1, b:2});
+        //console.log(res);
     }
 
     async removeDoc(id: string, collection: string) {

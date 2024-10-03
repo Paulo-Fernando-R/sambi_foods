@@ -35,20 +35,24 @@ export default class FoodRepository implements IfoodRepository {
             throw new Error(response.statusText, { cause: response.status });
         }
 
-        const fireRes = await this.firestore.getDocByProperty<Food>(id.toString(), this.foodCoolection, "idMeal", "==");
-
-        if (fireRes.length > 0) {
-            return fireRes[0].data;
-        }
-
         const data = response.data.meals[0] as Food;
-        const translated = await this.translate.translate<Food>(data);
 
-        if (translated) {
-            await this.firestore.addnewDoc<Food>(translated, this.foodCoolection);
-            return translated;
-        }
         return data;
+
+        // const fireRes = await this.firestore.getDocByProperty<Food>(id.toString(), this.foodCoolection, "idMeal", "==");
+
+        // if (fireRes.length > 0) {
+        //     return fireRes[0].data;
+        // }
+
+        // const data = response.data.meals[0] as Food;
+        // const translated = await this.translate.translate<Food>(data);
+
+        // if (translated) {
+        //     await this.firestore.addnewDoc<Food>(translated, this.foodCoolection);
+        //     return translated;
+        // }
+        // return data;
     }
 
     async searchByName(query: string): Promise<Food[]> {
@@ -63,35 +67,37 @@ export default class FoodRepository implements IfoodRepository {
         }
 
         const data = response.data.meals as Food[];
-        const fireRes: Food[] = [];
+        return data;
 
-        for (let i = 0; i < data.length; i++) {
-            const res = await this.firestore.getDocByProperty<Food>(
-                data[i].idMeal,
-                this.foodCoolection,
-                "idMeal",
-                "=="
-            );
-            if (res.length > 0) fireRes.push(res[0].data);
-        }
+        // const fireRes: Food[] = [];
 
-        const spliced = fireRes.map((e) => {
-            return data.splice(
-                data.findIndex((f) => f.idMeal === e.idMeal),
-                1
-            )[0];
-        });
+        // for (let i = 0; i < data.length; i++) {
+        //     const res = await this.firestore.getDocByProperty<Food>(
+        //         data[i].idMeal,
+        //         this.foodCoolection,
+        //         "idMeal",
+        //         "=="
+        //     );
+        //     if (res.length > 0) fireRes.push(res[0].data);
+        // }
 
-        const translated = await this.translate.translateList<Food>(data);
+        // const spliced = fireRes.map((e) => {
+        //     return data.splice(
+        //         data.findIndex((f) => f.idMeal === e.idMeal),
+        //         1
+        //     )[0];
+        // });
 
-        if (translated) {
-            for (let i = 0; i < translated.length; i++) {
-                await this.firestore.addnewDoc<Food>(translated[i], this.foodCoolection);
-            }
+        // const translated = await this.translate.translateList<Food>(data);
 
-            return translated.concat(fireRes);
-        }
-        return data.concat(spliced);
+        // if (translated) {
+        //     for (let i = 0; i < translated.length; i++) {
+        //         await this.firestore.addnewDoc<Food>(translated[i], this.foodCoolection);
+        //     }
+
+        //     return translated.concat(fireRes);
+        // }
+        // return data.concat(spliced);
     }
 
     async searchByArea(query: string): Promise<Food[]> {
@@ -106,31 +112,33 @@ export default class FoodRepository implements IfoodRepository {
 
         const data = response.data.meals as Food[];
 
-        const fireRes: Food[] = [];
+        return data;
 
-        for (let i = 0; i < data.length; i++) {
-            const res = await this.firestore.getDocByProperty<Food>(
-                data[i].idMeal,
-                this.foodCoolection,
-                "idMeal",
-                "=="
-            );
-            if (res.length > 0) fireRes.push(res[0].data);
-        }
+        // const fireRes: Food[] = [];
 
-        const spliced = fireRes.map((e) => {
-            return data.splice(
-                data.findIndex((f) => f.idMeal === e.idMeal),
-                1
-            )[0];
-        });
+        // for (let i = 0; i < data.length; i++) {
+        //     const res = await this.firestore.getDocByProperty<Food>(
+        //         data[i].idMeal,
+        //         this.foodCoolection,
+        //         "idMeal",
+        //         "=="
+        //     );
+        //     if (res.length > 0) fireRes.push(res[0].data);
+        // }
 
-        const translated = await this.translate.translateList<Food>(data);
+        // const spliced = fireRes.map((e) => {
+        //     return data.splice(
+        //         data.findIndex((f) => f.idMeal === e.idMeal),
+        //         1
+        //     )[0];
+        // });
 
-        if (translated) {
-            return translated.concat(fireRes);
-        }
-        return data.concat(spliced);
+        // const translated = await this.translate.translateList<Food>(data);
+
+        // if (translated) {
+        //     return translated.concat(fireRes);
+        // }
+        // return data.concat(spliced);
     }
 
     async searchByCategory(query: string): Promise<Food[]> {
@@ -145,31 +153,33 @@ export default class FoodRepository implements IfoodRepository {
 
         const data = response.data.meals as Food[];
 
-        const fireRes: Food[] = [];
+        return data;
 
-        for (let i = 0; i < data.length; i++) {
-            const res = await this.firestore.getDocByProperty<Food>(
-                data[i].idMeal,
-                this.foodCoolection,
-                "idMeal",
-                "=="
-            );
-            if (res.length > 0) fireRes.push(res[0].data);
-        }
+        // const fireRes: Food[] = [];
 
-        const spliced = fireRes.map((e) => {
-            return data.splice(
-                data.findIndex((f) => f.idMeal === e.idMeal),
-                1
-            )[0];
-        });
+        // for (let i = 0; i < data.length; i++) {
+        //     const res = await this.firestore.getDocByProperty<Food>(
+        //         data[i].idMeal,
+        //         this.foodCoolection,
+        //         "idMeal",
+        //         "=="
+        //     );
+        //     if (res.length > 0) fireRes.push(res[0].data);
+        // }
 
-        const translated = await this.translate.translateList<Food>(data);
+        // const spliced = fireRes.map((e) => {
+        //     return data.splice(
+        //         data.findIndex((f) => f.idMeal === e.idMeal),
+        //         1
+        //     )[0];
+        // });
 
-        if (translated) {
-            return translated.concat(fireRes);
-        }
-        return data.concat(spliced);
+        // const translated = await this.translate.translateList<Food>(data);
+
+        // if (translated) {
+        //     return translated.concat(fireRes);
+        // }
+        // return data.concat(spliced);
     }
 
     async getCountries(): Promise<FoodCountry[]> {
@@ -183,25 +193,28 @@ export default class FoodRepository implements IfoodRepository {
             throw new Error(response.statusText, { cause: response.status });
         }
 
-        const fireRes = await this.firestore.getCollection<FoodCountry>(this.countryCollection);
-
-        if (fireRes.length > 0) {
-            return fireRes.map((e) => e.data);
-        }
-
         const data = response.data.meals as FoodCountry[];
+        return data;
 
-        const translated = await this.translate.translateList<FoodCountry>(data);
+        // const fireRes = await this.firestore.getCollection<FoodCountry>(this.countryCollection);
 
-        if (translated) {
-            for (let i = 0; i < translated.length; i++) {
-                await this.firestore.addnewDoc(translated[i], this.countryCollection);
-            }
-        } else {
-            return data;
-        }
+        // if (fireRes.length > 0) {
+        //     return fireRes.map((e) => e.data);
+        // }
 
-        return translated;
+        // const data = response.data.meals as FoodCountry[];
+
+        // const translated = await this.translate.translateList<FoodCountry>(data);
+
+        // if (translated) {
+        //     for (let i = 0; i < translated.length; i++) {
+        //         await this.firestore.addnewDoc(translated[i], this.countryCollection);
+        //     }
+        // } else {
+        //     return data;
+        // }
+
+        // return translated;
     }
 
     async getCategories(): Promise<FoodCategory[]> {
@@ -214,24 +227,27 @@ export default class FoodRepository implements IfoodRepository {
             throw new Error(response.statusText, { cause: response.status });
         }
 
-        const fireRes = await this.firestore.getCollection<FoodCategory>(this.categoryCollection);
-
-        if (fireRes.length > 0) {
-            return fireRes.map((e) => e.data);
-        }
-
         const data = response.data.categories as FoodCategory[];
+        return data;
 
-        const translated = await this.translate.translateList<FoodCategory>(data);
+        // const fireRes = await this.firestore.getCollection<FoodCategory>(this.categoryCollection);
 
-        if (translated) {
-            for (let i = 0; i < translated.length; i++) {
-                await this.firestore.addnewDoc(translated[i], this.categoryCollection);
-            }
-        } else {
-            return data;
-        }
+        // if (fireRes.length > 0) {
+        //     return fireRes.map((e) => e.data);
+        // }
 
-        return translated;
+        // const data = response.data.categories as FoodCategory[];
+
+        // const translated = await this.translate.translateList<FoodCategory>(data);
+
+        // if (translated) {
+        //     for (let i = 0; i < translated.length; i++) {
+        //         await this.firestore.addnewDoc(translated[i], this.categoryCollection);
+        //     }
+        // } else {
+        //     return data;
+        // }
+
+        // return translated;
     }
 }

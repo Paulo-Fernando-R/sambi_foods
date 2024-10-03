@@ -5,7 +5,6 @@ import TranslateRepository from "../../repositories/translateRepository";
 import ItranslateService from "./ItranslateService";
 
 export default class TranslateServive implements ItranslateService {
-
     private readonly translateRepository: ItranslateRepository;
 
     constructor() {
@@ -13,22 +12,27 @@ export default class TranslateServive implements ItranslateService {
     }
 
     async translate<T>(obj: T): Promise<T | undefined> {
-        // TranslateRepository();
         if (!obj) return;
 
         const values = Object.values(obj);
         const keys = Object.keys(obj);
 
         //!FAZ A TRADUÇÃO E CONVERTE EM OBJ, COMENTADO PARA ECOMOMIZAR TRADUÇÃO
-        // const response = await repository.translate(values.join(" /|\\ "), "");
 
-        // const translated = response.split(" /|\\ ");
+        // const translated: string[] = [];
+
+        // for (let i = 0; i < values.length; i++) {
+        //     const aux = await this.translateRepository.translate(values[i] as string, "");
+        //     translated.push(aux);
+        // }
 
         // let fobj = {};
         // for (let i = 0; i < keys.length; i++) {
         //     Object.defineProperty(fobj, keys[i], {
         //         value: translated[i],
         //         writable: true,
+        //         enumerable: true,
+        //         configurable: true,
         //     });
         // }
 
@@ -49,7 +53,6 @@ export default class TranslateServive implements ItranslateService {
     }
 
     async translateList<T>(list: T[]): Promise<T[] | undefined> {
-        
         if (!list) return;
 
         const res: T[] = [];
@@ -65,25 +68,6 @@ export default class TranslateServive implements ItranslateService {
         return res;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
 async function translate<T>(obj: T | undefined) {
