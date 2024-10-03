@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     container: {
         gap: 12,
         paddingLeft: 20,
-        height: 400,
+        height: 500,
     },
     title: {
         ...appTexts.titleSmallSemiBold,

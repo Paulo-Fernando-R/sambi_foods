@@ -28,7 +28,7 @@ export default function Foods({ navigation }: FoodsHomeProps) {
     return (
         <View style={styles.screenContainer}>
             <Text style={styles.title}>Encontre as melhores receitas</Text>
-            <SearchInput placeholder="Pesquisar receitas" inputRef={ref} navigationFood={navigation} />
+            <SearchInput placeholder="Search recipes" inputRef={ref} navigationFood={navigation} />
             <ScrollView style={styles.scrollArea} contentContainerStyle={styles.scrollAreaContent}>
                 <CountryTags isLoading={isLoading} list={data?.countries} navigation={navigation} />
                 <CategoriesList list={data?.categories} isLoading={isLoading} navigation={navigation} />

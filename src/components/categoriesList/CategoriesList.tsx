@@ -27,7 +27,7 @@ export default function CategoriesList({ list, isLoading, navigation }: Categori
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Categorias</Text>
+            <Text style={styles.title}>Categories</Text>
             <ScrollView contentContainerStyle={styles.listContainer} horizontal={true}>
                 {isLoading || !list
                     ? aux.map((_, index) => {

@@ -17,7 +17,7 @@ export default function Drinks({ navigation }: FoodsHomeProps) {
     const ref = useRef<TextInput>(null);
 
     const { data, error, isLoading, isFetching, isRefetching } = useQuery({
-        queryKey: ["resources"],
+        queryKey: ["drinkResources"],
         queryFn: () => controller.getResources(),
     });
 
@@ -28,8 +28,8 @@ export default function Drinks({ navigation }: FoodsHomeProps) {
 
     return (
         <View style={styles.screenContainer}>
-            <Text style={styles.title}>Encontre os melhores drinks</Text>
-            <SearchInput placeholder="Pesquisar receitas" inputRef={ref} navigationDrink={navigation} />
+            <Text style={styles.title}>Find the best drinks here</Text>
+            <SearchInput placeholder="Search drinks" inputRef={ref} navigationDrink={navigation} />
             <ScrollView style={styles.scrollArea} contentContainerStyle={styles.scrollAreaContent}>
                 <DrinkTags isLoading={isLoading} list={data?.categories} navigation={navigation} />
                 <DrinkIngredientList list={data?.ingredients} isLoading={isLoading} navigation={navigation} />

@@ -38,7 +38,7 @@ export default function CountryTags({ isLoading, list, navigation }: CountryTags
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Por país</Text>
+            <Text style={styles.title}>By country</Text>
 
             {isOpen ? (
                 <Opened setIsOpen={setIsOpen} list={list} navigate={navigate} />
@@ -64,7 +64,7 @@ function Closed({ setIsOpen, list, navigate }: CountryTagsContentProps) {
                 })}
             </View>
             <TouchableHighlight onPress={() => setIsOpen(true)} underlayColor={""}>
-                <Text style={styles.actionButton}>Ver mais</Text>
+                <Text style={styles.actionButton}>see more</Text>
             </TouchableHighlight>
         </View>
     );
@@ -83,7 +83,7 @@ function Opened({ setIsOpen, list, navigate }: CountryTagsContentProps) {
                 })}
             </View>
             <TouchableHighlight onPress={() => setIsOpen(false)} underlayColor={""}>
-                <Text style={styles.actionButton}>Ver menos</Text>
+                <Text style={styles.actionButton}>see less</Text>
             </TouchableHighlight>
         </View>
     );

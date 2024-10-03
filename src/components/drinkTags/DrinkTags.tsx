@@ -30,7 +30,7 @@ export default function DrinkTags({ isLoading, list, navigation }: DrinkTagsProp
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Por país</Text>
+            <Text style={styles.title}>Categories</Text>
 
             <View>
                 <View style={styles.listContainer}>

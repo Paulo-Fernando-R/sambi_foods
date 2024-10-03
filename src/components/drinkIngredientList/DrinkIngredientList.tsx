@@ -26,17 +26,17 @@ export default function DrinkIngredientList({ list, isLoading, navigation }: Dri
         navigation.navigate("DrinksSearch", { query: tag, type: SearchType.ingredients });
     }
 
-    const smallList = list?.slice(0, Math.floor(list.length / 2));
+    //const smallList = list?.slice(0, Math.floor(list.length / 2));
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Categorias</Text>
+            <Text style={styles.title}>By ingredient</Text>
             <ScrollView contentContainerStyle={styles.listContainer} horizontal={true}>
-                {isLoading || !smallList
+                {isLoading || !list
                     ? aux.map((_, index) => {
                           return <CategoryItemSkeleton key={index} />;
                       })
-                    : smallList.map((item, index) => {
+                    : list.map((item, index) => {
                           return <CategoryItem data={item} navigate={navigate} key={index} />;
                       })}
             </ScrollView>
