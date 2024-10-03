@@ -167,10 +167,6 @@ export default class FoodRepository implements IfoodRepository {
         const translated = await this.translate.translateList<Food>(data);
 
         if (translated) {
-            for (let i = 0; i < translated.length; i++) {
-                await this.firestore.addnewDoc<Food>(translated[i], this.foodCoolection);
-            }
-
             return translated.concat(fireRes);
         }
         return data.concat(spliced);
