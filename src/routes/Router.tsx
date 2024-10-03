@@ -6,6 +6,7 @@ import { useAuthContext } from "../context/authContext";
 import appColors from "../styles/appColors";
 import Login from "../screens/login/Login";
 import FoodsRouter from "./FoodsRouter";
+import DrinksRouter from "./DrinksRouter";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -15,7 +16,6 @@ function AuthRouter() {
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="Login" component={Login} />
-                {}
             </Stack.Navigator>
         </NavigationContainer>
     );
@@ -34,7 +34,7 @@ function AppRouter() {
                 sceneContainerStyle={{ backgroundColor: appColors.bgLight }}
             >
                 <Tab.Screen name="Foods" component={FoodsRouter} options={{ tabBarLabel: "Comidas" }} />
-                <Tab.Screen name="Test2" component={FoodsRouter} options={{ tabBarLabel: "Bebidas" }} />
+                <Tab.Screen name="Test2" component={DrinksRouter} options={{ tabBarLabel: "Bebidas" }} />
                 <Tab.Screen name="Test3" component={FoodsRouter} options={{ tabBarLabel: "Favoritas" }} />
                 <Tab.Screen name="Test4" component={FoodsRouter} options={{ tabBarLabel: "Usuário" }} />
             </Tab.Navigator>

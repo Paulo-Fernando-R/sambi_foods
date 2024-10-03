@@ -1,18 +1,18 @@
 import { View, Text, TextInput, ScrollView, Alert } from "react-native";
-import styles from "./foodsStyles";
+import styles from "./drinksStyles";
 import React, { useRef } from "react";
 import SearchInput from "../../components/searchInput/SearchInput";
-import CountryTags from "../../components/countryTags/CountryTags";
-import CategoriesList from "../../components/categoriesList/CategoriesList";
 import { useQuery } from "@tanstack/react-query";
-import FoodsController from "./foodsController";
-import { FoodsNavigationProp } from "../../types/navigationTypes";
+import FoodsController from "./drinksController";
+import { DrinksNavigationProp } from "../../types/navigationTypes";
+import DrinkTags from "../../components/drinkTags/DrinkTags";
+import DrinkIngredientList from "../../components/drinkIngredientList/DrinkIngredientList";
 
 type FoodsHomeProps = {
-    navigation: FoodsNavigationProp;
+    navigation: DrinksNavigationProp;
 };
 
-export default function Foods({ navigation }: FoodsHomeProps) {
+export default function Drinks({ navigation }: FoodsHomeProps) {
     const controller = new FoodsController();
     const ref = useRef<TextInput>(null);
 
@@ -25,13 +25,14 @@ export default function Foods({ navigation }: FoodsHomeProps) {
         Alert.alert("Ocorreu um erro", error.message);
     }
 
+
     return (
         <View style={styles.screenContainer}>
-            <Text style={styles.title}>Encontre as melhores receitas</Text>
-            <SearchInput placeholder="Pesquisar receitas" inputRef={ref} navigationFood={navigation} />
+            <Text style={styles.title}>Encontre os melhores drinks</Text>
+            <SearchInput placeholder="Pesquisar receitas" inputRef={ref} navigationDrink={navigation} />
             <ScrollView style={styles.scrollArea} contentContainerStyle={styles.scrollAreaContent}>
-                <CountryTags isLoading={isLoading} list={data?.countries} navigation={navigation} />
-                <CategoriesList list={data?.categories} isLoading={isLoading} navigation={navigation} />
+                <DrinkTags isLoading={isLoading} list={data?.categories} navigation={navigation} />
+                <DrinkIngredientList list={data?.ingredients} isLoading={isLoading} navigation={navigation} />
             </ScrollView>
         </View>
     );

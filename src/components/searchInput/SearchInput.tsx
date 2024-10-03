@@ -3,21 +3,23 @@ import styles from "./searchInputStyles";
 import React from "react";
 import appColors from "../../styles/appColors";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { FoodsNavigationProp } from "../../types/navigationTypes";
+import { DrinksNavigationProp, FoodsNavigationProp } from "../../types/navigationTypes";
 import SearchType from "../../enums/searchType";
 
 type SearchInputProps = {
     placeholder: string;
     inputRef: React.RefObject<TextInput>;
-    navigation: FoodsNavigationProp;
+    navigationFood?: FoodsNavigationProp;
+    navigationDrink?: DrinksNavigationProp;
 };
 
-export default function SearchInput({ placeholder, inputRef, navigation }: SearchInputProps) {
+export default function SearchInput({ placeholder, inputRef, navigationFood, navigationDrink }: SearchInputProps) {
     function navigate(tag: string) {
         if (tag.length < 3) {
             return;
         }
-        navigation.navigate("FoodsSearch", { query: tag, type: SearchType.name });
+        if (navigationFood) navigationFood.navigate("FoodsSearch", { query: tag, type: SearchType.name });
+        if (navigationDrink) navigationDrink.navigate("DrinksSearch", { query: tag, type: SearchType.name });
     }
 
     return (
