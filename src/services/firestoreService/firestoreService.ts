@@ -6,7 +6,7 @@ export default class FirestorService implements IfirestoreService {
     async getCollection<T>(collection: string) {
         const response = await firestore().collection(collection).get();
         const aux = response.docs.map((e) => e.data() as T);
-        console.log(response.docs.map((e) => e.data()));
+        //console.log(response.docs.map((e) => e.data()));
         return aux;
     }
 

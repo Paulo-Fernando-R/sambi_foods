@@ -1,11 +1,19 @@
 import Food from "../../models/food";
 import FoodCategory from "../../models/foodCategoty";
+import ItranslateRepository from "../../repositories/ItranslateRepository";
 import TranslateRepository from "../../repositories/translateRepository";
 import ItranslateService from "./ItranslateService";
 
 export default class TranslateServive implements ItranslateService {
+
+    private readonly translateRepository: ItranslateRepository;
+
+    constructor() {
+        this.translateRepository = new TranslateRepository();
+    }
+
     async translate<T>(obj: T): Promise<T | undefined> {
-        const repository = new TranslateRepository();
+        // TranslateRepository();
         if (!obj) return;
 
         const values = Object.values(obj);
