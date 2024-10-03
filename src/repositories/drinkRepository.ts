@@ -1,10 +1,10 @@
-import Drink from "../models/drink";
-import DrinkCategory from "../models/drinkCategory";
-import DrinkIngredient from "../models/drinkIngredient";
-import IDrinkRepository from "./IDrinkRepository";
 import axiosInstance from "../services/customAxiosClient";
-import { AxiosInstance } from "axios";
+import DrinkIngredient from "../models/drinkIngredient";
+import DrinkCategory from "../models/drinkCategory";
+import IDrinkRepository from "./IDrinkRepository";
 import RecipeType from "../enums/recipeType";
+import { AxiosInstance } from "axios";
+import Drink from "../models/drink";
 
 export default class DrinkRepository implements IDrinkRepository {
     private axios: AxiosInstance;

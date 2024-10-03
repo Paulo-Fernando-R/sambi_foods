@@ -1,11 +1,11 @@
 import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
-import styles from "./drinkIngredientListStyles";
-import React from "react";
-import ContentLoader, { Rect } from "react-content-loader/native";
-import appColors from "../../styles/appColors";
 import { DrinksNavigationProp } from "../../types/navigationTypes";
-import SearchType from "../../enums/searchType";
+import ContentLoader, { Rect } from "react-content-loader/native";
 import DrinkIngredient from "../../models/drinkIngredient";
+import styles from "./drinkIngredientListStyles";
+import SearchType from "../../enums/searchType";
+import appColors from "../../styles/appColors";
+import React from "react";
 
 type DrinkIngredientListProps = {
     list: DrinkIngredient[] | undefined;

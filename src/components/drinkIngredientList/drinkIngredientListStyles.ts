@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import appTexts from "../../styles/appText";
 import appColors from "../../styles/appColors";
 
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         gap: 12,
         flexWrap: "wrap",
-        paddingRight: 10
+        paddingRight: 10,
     },
 
     listItem: {
@@ -26,14 +26,14 @@ const styles = StyleSheet.create({
         height: 100,
         position: "relative",
         backgroundColor: appColors.primaryLight,
-        padding: 8
+        padding: 8,
     },
 
     listItemSkeleton: {
         borderRadius: 16,
         width: 100,
         height: 100,
-        overflow: 'hidden'
+        overflow: "hidden",
     },
 
     image: {

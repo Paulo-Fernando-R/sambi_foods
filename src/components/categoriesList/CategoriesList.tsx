@@ -1,11 +1,11 @@
 import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
+import ContentLoader, { Rect } from "react-content-loader/native";
+import { FoodsNavigationProp } from "../../types/navigationTypes";
+import FoodCategory from "../../models/foodCategoty";
+import SearchType from "../../enums/searchType";
+import appColors from "../../styles/appColors";
 import styles from "./categoriesLinkStyles";
 import React from "react";
-import FoodCategory from "../../models/foodCategoty";
-import ContentLoader, { Rect } from "react-content-loader/native";
-import appColors from "../../styles/appColors";
-import { FoodsNavigationProp } from "../../types/navigationTypes";
-import SearchType from "../../enums/searchType";
 
 type CategoriesListProps = {
     list: FoodCategory[] | undefined;

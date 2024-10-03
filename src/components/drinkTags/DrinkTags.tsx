@@ -1,11 +1,11 @@
 import { View, Text, TouchableHighlight, TouchableOpacity } from "react-native";
-import { DrinksNavigationProp, FoodsNavigationProp } from "../../types/navigationTypes";
+import { DrinksNavigationProp } from "../../types/navigationTypes";
 import DrinkCategory from "../../models/drinkCategory";
 import { Code } from "react-content-loader/native";
 import SearchType from "../../enums/searchType";
 import appColors from "../../styles/appColors";
-import React from "react";
 import styles from "./drinkTagsStyles";
+import React from "react";
 
 type DrinkTagsProps = {
     isLoading: boolean | undefined;

@@ -1,12 +1,12 @@
+import CategoriesList from "../../components/categoriesList/CategoriesList";
 import { View, Text, TextInput, ScrollView, Alert } from "react-native";
-import styles from "./foodsStyles";
-import React, { useRef } from "react";
 import SearchInput from "../../components/searchInput/SearchInput";
 import CountryTags from "../../components/countryTags/CountryTags";
-import CategoriesList from "../../components/categoriesList/CategoriesList";
+import { FoodsNavigationProp } from "../../types/navigationTypes";
 import { useQuery } from "@tanstack/react-query";
 import FoodsController from "./foodsController";
-import { FoodsNavigationProp } from "../../types/navigationTypes";
+import React, { useRef } from "react";
+import styles from "./foodsStyles";
 
 type FoodsHomeProps = {
     navigation: FoodsNavigationProp;

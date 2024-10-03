@@ -1,11 +1,6 @@
+import { DrinksRouterParamList } from "../types/navigationTypes";
 import { createStackNavigator } from "@react-navigation/stack";
-import Foods from "../screens/foods/Foods";
-import Search from "../screens/search/Search";
-import Details from "../screens/details/Details";
-import Coock from "../screens/cook/Coock";
 import Drinks from "../screens/drinks/Drinks";
-
-import { FoodsRouterParamList, DrinksRouterParamList } from "../types/navigationTypes";
 
 const Stack = createStackNavigator<DrinksRouterParamList>();
 
