@@ -106,12 +106,31 @@ export default class FoodRepository implements IfoodRepository {
 
         const data = response.data.meals as Food[];
 
+        const fireRes: Food[] = [];
+
+        for (let i = 0; i < data.length; i++) {
+            const res = await this.firestore.getDocByProperty<Food>(
+                data[i].idMeal,
+                this.foodCoolection,
+                "idMeal",
+                "=="
+            );
+            if (res.length > 0) fireRes.push(res[0].data);
+        }
+
+        const spliced = fireRes.map((e) => {
+            return data.splice(
+                data.findIndex((f) => f.idMeal === e.idMeal),
+                1
+            )[0];
+        });
+
         const translated = await this.translate.translateList<Food>(data);
 
         if (translated) {
-            return translated;
+            return translated.concat(fireRes);
         }
-        return data;
+        return data.concat(spliced);
     }
 
     async searchByCategory(query: string): Promise<Food[]> {
@@ -126,12 +145,35 @@ export default class FoodRepository implements IfoodRepository {
 
         const data = response.data.meals as Food[];
 
+        const fireRes: Food[] = [];
+
+        for (let i = 0; i < data.length; i++) {
+            const res = await this.firestore.getDocByProperty<Food>(
+                data[i].idMeal,
+                this.foodCoolection,
+                "idMeal",
+                "=="
+            );
+            if (res.length > 0) fireRes.push(res[0].data);
+        }
+
+        const spliced = fireRes.map((e) => {
+            return data.splice(
+                data.findIndex((f) => f.idMeal === e.idMeal),
+                1
+            )[0];
+        });
+
         const translated = await this.translate.translateList<Food>(data);
 
         if (translated) {
-            return translated;
+            for (let i = 0; i < translated.length; i++) {
+                await this.firestore.addnewDoc<Food>(translated[i], this.foodCoolection);
+            }
+
+            return translated.concat(fireRes);
         }
-        return data;
+        return data.concat(spliced);
     }
 
     async getCountries(): Promise<FoodCountry[]> {
