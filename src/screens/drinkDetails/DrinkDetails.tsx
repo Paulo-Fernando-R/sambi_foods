@@ -27,10 +27,20 @@ export default function DrinkDetails({ navigation, route }: DrinkDetailsProps) {
     }
 
     function navigate() {
-        navigation.navigate("DrinksCook", { recipe: data! });
+        navigation.navigate("DrinksCook", { recipe: data?.drink! });
     }
 
-    const { data, isLoading } = useQuery({
+    async function add() {
+        await controller.addFavoriteDrink(data?.drink!);
+        refetch();
+    }
+
+    async function remove() {
+        await controller.removeFavoriteDrink(data?.drink!);
+        refetch();
+    }
+
+    const { data, isLoading, refetch } = useQuery({
         queryKey: ["details" + id],
         queryFn: () => controller.getDetails(id),
     });
@@ -39,27 +49,24 @@ export default function DrinkDetails({ navigation, route }: DrinkDetailsProps) {
         return <DrinkDetailsSkeleton goBack={goBack} name={name} />;
     }
 
-    const ingredient = controller.listIngredients(data);
+    const ingredient = controller.listIngredients(data.drink);
 
     return (
         <View style={styles.DetailsContainer}>
             <Header goBack={goBack} title={name} />
 
             <ScrollView contentContainerStyle={styles.scrollView}>
-                <Image style={styles.image} src={data.strDrinkThumb} alt="" />
+                <Image style={styles.image} src={data.drink.strDrinkThumb} alt="" />
 
                 <View style={styles.title}>
-                    <Text style={styles.name}>{data.strDrink}</Text>
-                    <Favorite
-                        add={() => controller.addFavoriteDrink(data)}
-                        remove={() => controller.removeFavoriteDrink(data)}
-                    />
+                    <Text style={styles.name}>{data.drink.strDrink}</Text>
+                    <Favorite isFavorite={data.fav} add={add} remove={remove} />
                 </View>
 
                 <View style={styles.tagsContainer}>
-                    <Text style={styles.tagText}>{data.strCategory}</Text>
+                    <Text style={styles.tagText}>{data.drink.strCategory}</Text>
 
-                    <Text style={styles.tagText}>{data.strCategory}</Text>
+                    <Text style={styles.tagText}>{data.drink.strCategory}</Text>
                     <Text style={styles.tagText}>{ingredient.length} Ingredientes</Text>
                 </View>
 

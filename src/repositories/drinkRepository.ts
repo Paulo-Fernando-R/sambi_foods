@@ -23,6 +23,24 @@ export default class DrinkRepository implements IDrinkRepository {
         this.firestore = new FirestoreService();
         this.authService = new AuthService();
     }
+
+    async verifyIsDrinkFavorite(drink: Drink): Promise<boolean> {
+        const auth = this.authService.getItem();
+        if (!auth) {
+            throw new Error("Invalid user credentials");
+        }
+
+        const id = auth.user.id;
+        const collection = `${this.favoriteCollection}_${id}`;
+        const res = await this.firestore.getDocByProperty<DrinkByUser>(drink.idDrink, collection, "drink.idDrink", "==");
+
+        if (res.length > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
     async removeFavoriteDrink(drink: Drink): Promise<void> {
         const auth = this.authService.getItem();
         if (!auth) {
@@ -36,6 +54,7 @@ export default class DrinkRepository implements IDrinkRepository {
 
         await this.firestore.removeDoc(doc[0].id, collection);
     }
+
     async favoriteDrink(drink: Drink): Promise<void> {
         const auth = this.authService.getItem();
         if (!auth) {
@@ -50,6 +69,7 @@ export default class DrinkRepository implements IDrinkRepository {
         };
         await this.firestore.addnewDoc<DrinkByUser>(body, collection);
     }
+
     async getCategories(): Promise<DrinkCategory[]> {
         //
         const response = await this.axios.get("list.php?c=list");
@@ -64,6 +84,7 @@ export default class DrinkRepository implements IDrinkRepository {
         const data = response.data.drinks as DrinkCategory[];
         return data;
     }
+
     async getIngredients(): Promise<DrinkIngredient[]> {
         const response = await this.axios.get("/list.php?i=list");
 
@@ -81,6 +102,7 @@ export default class DrinkRepository implements IDrinkRepository {
         });
         return data;
     }
+
     async searchByName(query: string): Promise<Drink[]> {
         const response = await this.axios.get("search.php?s=" + query);
 
@@ -95,6 +117,7 @@ export default class DrinkRepository implements IDrinkRepository {
         const data = response.data.drinks as Drink[];
         return data;
     }
+
     async searchByIngredient(query: string): Promise<Drink[]> {
         const response = await this.axios.get("/filter.php?i=" + query);
 
@@ -109,6 +132,7 @@ export default class DrinkRepository implements IDrinkRepository {
         const data = response.data.drinks as Drink[];
         return data;
     }
+
     async searchByCategory(query: string): Promise<Drink[]> {
         const response = await this.axios.get("/filter.php?c=" + query);
 
@@ -123,6 +147,7 @@ export default class DrinkRepository implements IDrinkRepository {
         const data = response.data.drinks as Drink[];
         return data;
     }
+
     async searchById(id: number | string): Promise<Drink> {
         const response = await this.axios.get("/lookup.php?i=" + id);
 

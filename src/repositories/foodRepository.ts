@@ -22,6 +22,24 @@ export default class FoodRepository implements IfoodRepository {
         this.firestore = new FirestoreService();
         this.authService = new AuthService();
     }
+
+    async verifyIsFoodFavorite(food: Food): Promise<boolean> {
+        const auth = this.authService.getItem();
+        if (!auth) {
+            throw new Error("Invalid user credentials");
+        }
+
+        const id = auth.user.id;
+        const collection = `${this.favoriteCollection}_${id}`;
+        const res = await this.firestore.getDocByProperty<FoodByUser>(food.idMeal, collection, "food.idMeal", "==");
+
+        if (res.length > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
     async favoriteFood(food: Food): Promise<void> {
         const auth = this.authService.getItem();
         if (!auth) {
@@ -36,6 +54,7 @@ export default class FoodRepository implements IfoodRepository {
         };
         await this.firestore.addnewDoc<FoodByUser>(body, collection);
     }
+
     async removeFavoriteFood(food: Food): Promise<void> {
         const auth = this.authService.getItem();
         if (!auth) {
@@ -49,6 +68,7 @@ export default class FoodRepository implements IfoodRepository {
 
         await this.firestore.removeDoc(doc[0].id, collection);
     }
+    
     async searchById(id: number | string): Promise<Food> {
         const response = await this.axios.get("/lookup.php?i=" + id);
 

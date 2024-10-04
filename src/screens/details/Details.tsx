@@ -27,11 +27,21 @@ export default function Details({ navigation, route }: DetailsProps) {
     }
 
     function navigate() {
-        navigation.navigate("FoodsCook", { recipe: data! });
+        navigation.navigate("FoodsCook", { recipe: data?.food! });
     }
 
-    const { data, isLoading } = useQuery({
-        queryKey: ["details" + id],
+    async function add() {
+        await controller.addFavoriteFood(data?.food!);
+        refetch();
+    }
+
+    async function remove() {
+        await controller.removeFavoriteFood(data?.food!);
+        refetch();
+    }
+
+    const { data, isLoading, refetch } = useQuery({
+        queryKey: ["foodDetails" + id],
         queryFn: () => controller.getDetails(id),
     });
 
@@ -39,27 +49,24 @@ export default function Details({ navigation, route }: DetailsProps) {
         return <DetailsSkeleton goBack={goBack} name={name} />;
     }
 
-    const ingredient = controller.listIngredients(data);
+    const ingredient = controller.listIngredients(data.food);
 
     return (
         <View style={styles.DetailsContainer}>
             <Header goBack={goBack} title={name} />
 
             <ScrollView contentContainerStyle={styles.scrollView}>
-                <Image style={styles.image} src={data.strMealThumb} alt="" />
+                <Image style={styles.image} src={data.food.strMealThumb} alt="" />
 
                 <View style={styles.title}>
-                    <Text style={styles.name}>{data.strMeal}</Text>
-                    <Favorite
-                        add={() => controller.addFavoriteDrink(data)}
-                        remove={() => controller.removeFavoriteDrink(data)}
-                    />
+                    <Text style={styles.name}>{data.food.strMeal}</Text>
+                    <Favorite isFavorite={data.fav} add={add} remove={remove} />
                 </View>
 
                 <View style={styles.tagsContainer}>
-                    <Text style={styles.tagText}>{data.strArea}</Text>
+                    <Text style={styles.tagText}>{data.food.strArea}</Text>
 
-                    <Text style={styles.tagText}>{data.strCategory}</Text>
+                    <Text style={styles.tagText}>{data.food.strCategory}</Text>
                     <Text style={styles.tagText}>{ingredient.length} Ingredientes</Text>
                 </View>
 

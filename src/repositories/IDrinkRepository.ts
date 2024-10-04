@@ -12,4 +12,5 @@ export default interface IDrinkRepository {
     searchById(id: number | string): Promise<Drink>;
     favoriteDrink(drink: Drink): Promise<void>;
     removeFavoriteDrink(drink: Drink): Promise<void>;
+    verifyIsDrinkFavorite(food: Drink): Promise<boolean>;
 }

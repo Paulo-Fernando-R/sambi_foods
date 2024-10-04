@@ -7,10 +7,11 @@ import React, { useState } from "react";
 type FavoriteProps = {
     add: () => Promise<void>;
     remove: () => Promise<void>;
+    isFavorite: boolean;
 };
 
-export default function Favorite({ add, remove }: FavoriteProps) {
-    const [isFav, setIsFav] = useState(false);
+export default function Favorite({ add, remove, isFavorite }: FavoriteProps) {
+    const [isFav, setIsFav] = useState(isFavorite);
     const handleFav = () => {
         setIsFav(!isFav);
         if (isFav) {

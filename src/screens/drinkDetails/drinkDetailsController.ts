@@ -8,6 +8,11 @@ export default class DrinkDetailsController {
         this.repository = new DrinkRepository();
     }
 
+    async verifyIsFoodFavorite(drink: Drink) {
+        const res = await this.repository.verifyIsDrinkFavorite(drink);
+        return res;
+    }
+
     async addFavoriteDrink(drink: Drink) {
         await this.repository.favoriteDrink(drink);
     }
@@ -17,7 +22,11 @@ export default class DrinkDetailsController {
 
     async getDetails(id: number | string) {
         const res = await this.repository.searchById(id);
-        return res;
+        const aux = await this.verifyIsFoodFavorite(res);
+        return {
+            drink: res,
+            fav: aux,
+        };
     }
 
     listIngredients(data: Drink) {
