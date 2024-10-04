@@ -9,4 +9,6 @@ export default interface IfoodRepository {
     searchByArea(query: string): Promise<Food[]>;
     searchByCategory(query: string): Promise<Food[]>;
     searchById(id: number | string): Promise<Food>;
+    favoriteFood(food: Food): Promise<void>;
+    removeFavoriteFood(food: Food): Promise<void>;
 }

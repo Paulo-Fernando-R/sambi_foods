@@ -1,15 +1,53 @@
+import IfirestoreService from "../services/firestoreService/IfirestoreService";
+import FirestoreService from "../services/firestoreService/firestoreService";
 import FoodCategory, { FoodCountry } from "../models/foodCategoty";
+import IauthService from "../services/authService/IauthService";
+import AuthService from "../services/authService/authService";
 import axiosInstance from "../services/customAxiosClient";
 import IfoodRepository from "./IfoodRepository";
+import FoodByUser from "../models/foodByUser";
 import RecipeType from "../enums/recipeType";
 import { AxiosInstance } from "axios";
 import Food from "../models/food";
 
 export default class FoodRepository implements IfoodRepository {
     private axios: AxiosInstance;
+    private readonly favoriteCollection: string;
+    private firestore: IfirestoreService;
+    private authService: IauthService;
 
     constructor() {
         this.axios = axiosInstance(RecipeType.food);
+        this.favoriteCollection = "FavoriteFoodCollection";
+        this.firestore = new FirestoreService();
+        this.authService = new AuthService();
+    }
+    async favoriteFood(food: Food): Promise<void> {
+        const auth = this.authService.getItem();
+        if (!auth) {
+            throw new Error("Invalid user credentials");
+        }
+
+        const id = auth.user.id;
+        const collection = `${this.favoriteCollection}_${id}`;
+        const body: FoodByUser = {
+            user: id,
+            food: food,
+        };
+        await this.firestore.addnewDoc<FoodByUser>(body, collection);
+    }
+    async removeFavoriteFood(food: Food): Promise<void> {
+        const auth = this.authService.getItem();
+        if (!auth) {
+            throw new Error("Invalid user credentials");
+        }
+
+        const id = auth.user.id;
+        const collection = `${this.favoriteCollection}_${id}`;
+
+        const doc = await this.firestore.getDocByProperty<Food>(food.idMeal, collection, "food.idMeal", "==");
+
+        await this.firestore.removeDoc(doc[0].id, collection);
     }
     async searchById(id: number | string): Promise<Food> {
         const response = await this.axios.get("/lookup.php?i=" + id);

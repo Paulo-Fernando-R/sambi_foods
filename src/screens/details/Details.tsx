@@ -1,13 +1,13 @@
-import React from "react";
 import { View, Text, Image, ScrollView, TouchableOpacity, Dimensions } from "react-native";
-import styles from "./detailsStyles";
-import Header from "../../components/header/Header";
-import Favorite from "../../components/favorite/Favorite";
 import { FoodsDetailsRouteProp, FoodsNavigationProp } from "../../types/navigationTypes";
+import ContentLoader, { Rect, Code } from "react-content-loader/native";
+import Favorite from "../../components/favorite/Favorite";
+import Header from "../../components/header/Header";
 import DetailsController from "./detailsController";
 import { useQuery } from "@tanstack/react-query";
-import ContentLoader, { Rect, Code } from "react-content-loader/native";
 import appColors from "../../styles/appColors";
+import styles from "./detailsStyles";
+import React from "react";
 
 type DetailsProps = {
     navigation: FoodsNavigationProp;
@@ -50,7 +50,10 @@ export default function Details({ navigation, route }: DetailsProps) {
 
                 <View style={styles.title}>
                     <Text style={styles.name}>{data.strMeal}</Text>
-                    <Favorite />
+                    <Favorite
+                        add={() => controller.addFavoriteDrink(data)}
+                        remove={() => controller.removeFavoriteDrink(data)}
+                    />
                 </View>
 
                 <View style={styles.tagsContainer}>

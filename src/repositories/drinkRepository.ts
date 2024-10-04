@@ -6,6 +6,7 @@ import axiosInstance from "../services/customAxiosClient";
 import DrinkIngredient from "../models/drinkIngredient";
 import DrinkCategory from "../models/drinkCategory";
 import IDrinkRepository from "./IDrinkRepository";
+import DrinkByUser from "../models/drinkByUser";
 import RecipeType from "../enums/recipeType";
 import { AxiosInstance } from "axios";
 import Drink from "../models/drink";
@@ -18,7 +19,7 @@ export default class DrinkRepository implements IDrinkRepository {
 
     constructor() {
         this.axios = axiosInstance(RecipeType.drink);
-        this.favoriteCollection = "FavoriteCollection";
+        this.favoriteCollection = "FavoriteDrinkCollection";
         this.firestore = new FirestoreService();
         this.authService = new AuthService();
     }
@@ -31,7 +32,7 @@ export default class DrinkRepository implements IDrinkRepository {
         const id = auth.user.id;
         const collection = `${this.favoriteCollection}_${id}`;
 
-        const doc = await this.firestore.getDocByProperty(drink.idDrink, collection, "drink.idDrink", "==");
+        const doc = await this.firestore.getDocByProperty<Drink>(drink.idDrink, collection, "drink.idDrink", "==");
 
         await this.firestore.removeDoc(doc[0].id, collection);
     }
@@ -43,11 +44,11 @@ export default class DrinkRepository implements IDrinkRepository {
 
         const id = auth.user.id;
         const collection = `${this.favoriteCollection}_${id}`;
-        const body = {
+        const body: DrinkByUser = {
             user: id,
             drink: drink,
         };
-        await this.firestore.addnewDoc(body, collection);
+        await this.firestore.addnewDoc<DrinkByUser>(body, collection);
     }
     async getCategories(): Promise<DrinkCategory[]> {
         //

@@ -43,10 +43,7 @@ export default class FirestoreService implements IfirestoreService {
     }
 
     async addnewDoc<T extends { [x: string]: any }>(doc: T, collection: string) {
-        //  console.log(doc);
         await firestore().collection(collection).doc().set(doc);
-
-        //console.log(res);
     }
 
     async removeDoc(id: string, collection: string) {

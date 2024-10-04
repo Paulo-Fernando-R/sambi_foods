@@ -8,6 +8,13 @@ export default class DetailsController {
         this.repository = new FoodRepository();
     }
 
+    async addFavoriteDrink(food: Food) {
+        await this.repository.favoriteFood(food);
+    }
+    async removeFavoriteDrink(food: Food) {
+        await this.repository.removeFavoriteFood(food);
+    }
+
     async getDetails(id: number | string) {
         const res = await this.repository.searchById(id);
         return res;
