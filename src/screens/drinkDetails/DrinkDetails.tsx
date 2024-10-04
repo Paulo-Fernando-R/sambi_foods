@@ -66,7 +66,7 @@ export default function DrinkDetails({ navigation, route }: DrinkDetailsProps) {
                 </View>
 
                 <TouchableOpacity style={styles.button} activeOpacity={0.8} onPress={navigate}>
-                    <Text style={styles.buttonText}>Começar a cozinhar</Text>
+                    <Text style={styles.buttonText}>Começar a preparar</Text>
                 </TouchableOpacity>
             </ScrollView>
         </View>

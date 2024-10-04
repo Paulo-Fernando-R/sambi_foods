@@ -33,11 +33,10 @@ export default class DrinkCookController {
             .filter((entry) => entry[1])
             .map((e) => e[1] as string);
 
-        //return measures as string[];
-        return this.formateMeasueres(measures);
+        return this.formatMeasueres(measures);
     }
 
-    formateMeasueres(measures: string[]) {
+    formatMeasueres(measures: string[]) {
         const aux = [] as string[];
 
         measures.forEach((e) => {
@@ -56,7 +55,7 @@ export default class DrinkCookController {
         }
 
         aux.splice(index, 1);
-     
+
         let result = 0;
         for (let i = 0; i < aux.length; i++) {
             result = result + this.parseNotation(aux[i]);
@@ -68,7 +67,7 @@ export default class DrinkCookController {
 
     parseNotation(text: string) {
         if (!text.includes("/")) {
-            return !isNaN(parseFloat(text)) ? parseFloat(text) : 0;
+            return isNaN(parseFloat(text)) ? 0 : parseFloat(text);
         }
 
         const aux = text.split("/");
