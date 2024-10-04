@@ -71,12 +71,12 @@ export default function DrinkDetails({ navigation, route }: DrinkDetailsProps) {
                 </View>
 
                 <View style={styles.ingredientContainer}>
-                    <Text style={styles.subtitle}>Ingredientes</Text>
+                    <Text style={styles.subtitle}>Ingredients</Text>
                     <Text style={styles.paragraph}>{ingredient.join(" | ")}</Text>
                 </View>
 
                 <TouchableOpacity style={styles.button} activeOpacity={0.8} onPress={navigate}>
-                    <Text style={styles.buttonText}>Começar a preparar</Text>
+                    <Text style={styles.buttonText}>Start preparing</Text>
                 </TouchableOpacity>
             </ScrollView>
         </View>

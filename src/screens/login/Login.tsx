@@ -26,12 +26,12 @@ export default function Login() {
         <View style={styles.loginContainer}>
             <View style={styles.logoBox}>
                 <Image style={styles.logo} source={icon} />
-                <Text style={styles.subtitle}>Bem vindo ao</Text>
+                <Text style={styles.subtitle}>Welcome to</Text>
                 <Text style={styles.title}>SAMBI Foods</Text>
             </View>
 
             <View style={styles.buttonContainer}>
-                <Text style={styles.buttonText}>Faça login com sua conta Google</Text>
+                <Text style={styles.buttonText}>Log in with your google account</Text>
                 <TouchableOpacity style={styles.button} activeOpacity={0.8} onPress={() => mutation.mutate()}>
                     <AntDesign name="google" size={20} color={appColors.textLight} />
                     <Text style={styles.buttonTitle}>LOGIN</Text>
@@ -39,7 +39,7 @@ export default function Login() {
             </View>
 
             <View style={styles.bottom}>
-                <Text style={styles.bottomText}>Encontre as melhores receitas aqui</Text>
+                <Text style={styles.bottomText}>Find the best recipes and drinks here</Text>
             </View>
         </View>
     );
