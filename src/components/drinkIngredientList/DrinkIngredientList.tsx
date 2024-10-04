@@ -19,24 +19,24 @@ export default function DrinkIngredientList({ list, isLoading, navigation }: Dri
     let aux: string[] = [];
 
     if (isLoading || !list) {
-        aux = ["", "", "", "", "", "", "", "", "", "", "", ""];
+        aux = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
     }
 
     function navigate(tag: string) {
         navigation.navigate("DrinksSearch", { query: tag, type: SearchType.ingredients });
     }
 
-    //const smallList = list?.slice(0, Math.floor(list.length / 2));
+    const smallList = list?.slice(0, Math.floor(list.length / 2));
 
     return (
         <View style={styles.container}>
             <Text style={styles.title}>By ingredient</Text>
             <ScrollView contentContainerStyle={styles.listContainer} horizontal={true}>
-                {isLoading || !list
+                {isLoading || !smallList
                     ? aux.map((_, index) => {
                           return <CategoryItemSkeleton key={index} />;
                       })
-                    : list.map((item, index) => {
+                    : smallList.map((item, index) => {
                           return <CategoryItem data={item} navigate={navigate} key={index} />;
                       })}
             </ScrollView>

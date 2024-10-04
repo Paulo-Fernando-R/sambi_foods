@@ -43,16 +43,60 @@ export default class DrinkRepository implements IDrinkRepository {
         });
         return data;
     }
-    searchByName(query: string): Promise<Drink[]> {
-        throw new Error("Method not implemented.");
+    async searchByName(query: string): Promise<Drink[]> {
+        const response = await this.axios.get("search.php?s=" + query);
+
+        if (!response) {
+            throw new Error("internal server error", { cause: "500" });
+        }
+
+        if (response.status !== 200) {
+            throw new Error(response.statusText, { cause: response.status });
+        }
+
+        const data = response.data.drinks as Drink[];
+        return data;
     }
-    searchByIngredient(query: string): Promise<Drink[]> {
-        throw new Error("Method not implemented.");
+    async searchByIngredient(query: string): Promise<Drink[]> {
+        const response = await this.axios.get("/filter.php?i=" + query);
+
+        if (!response) {
+            throw new Error("internal server error", { cause: "500" });
+        }
+
+        if (response.status !== 200) {
+            throw new Error(response.statusText, { cause: response.status });
+        }
+
+        const data = response.data.drinks as Drink[];
+        return data;
     }
-    searchByCategory(query: string): Promise<Drink[]> {
-        throw new Error("Method not implemented.");
+    async searchByCategory(query: string): Promise<Drink[]> {
+        const response = await this.axios.get("/filter.php?c=" + query);
+
+        if (!response) {
+            throw new Error("internal server error", { cause: "500" });
+        }
+
+        if (response.status !== 200) {
+            throw new Error(response.statusText, { cause: response.status });
+        }
+
+        const data = response.data.drinks as Drink[];
+        return data;
     }
-    searchById(id: number | string): Promise<Drink> {
-        throw new Error("Method not implemented.");
+    async searchById(id: number | string): Promise<Drink> {
+        const response = await this.axios.get("/lookup.php?i=" + id);
+
+        if (!response) {
+            throw new Error("internal server error", { cause: "500" });
+        }
+
+        if (response.status !== 200) {
+            throw new Error(response.statusText, { cause: response.status });
+        }
+
+        const data = response.data.drinks as Drink[];
+        return data[0];
     }
 }

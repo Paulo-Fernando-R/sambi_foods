@@ -30,10 +30,10 @@ export type DrinksRouterParamList = {
         query: string;
         type: SearchType;
     };
-    DrinksDetails: undefined /*{
+    DrinksDetails: {
         id: number;
         name: string;
-    };*/;
+    };
     DrinksCook: undefined /* {
         recipe: Food;
     };*/;

@@ -1,8 +1,6 @@
-import Food from "../models/food";
-import FoodCategory, { FoodCountry } from "../models/foodCategoty";
-import Drink from "../models/drink";
 import DrinkIngredient from "../models/drinkIngredient";
 import DrinkCategory from "../models/drinkCategory";
+import Drink from "../models/drink";
 
 export default interface IDrinkRepository {
     getCategories(): Promise<DrinkCategory[]>;
