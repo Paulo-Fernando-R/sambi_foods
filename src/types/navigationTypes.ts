@@ -2,6 +2,7 @@ import type { StackNavigationProp } from "@react-navigation/stack";
 import type { RouteProp } from "@react-navigation/native";
 import SearchType from "../enums/searchType";
 import Food from "../models/food";
+import Drink from "../models/drink";
 
 export type FoodsRouterParamList = {
     FoodsHome: undefined;
@@ -34,9 +35,9 @@ export type DrinksRouterParamList = {
         id: number;
         name: string;
     };
-    DrinksCook: undefined /* {
-        recipe: Food;
-    };*/;
+    DrinksCook:   {
+        recipe: Drink;
+    };
 };
 
 export type DrinksNavigationProp = StackNavigationProp<DrinksRouterParamList, "DrinksHome">;
