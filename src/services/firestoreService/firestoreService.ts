@@ -2,7 +2,7 @@ import IfirestoreService from "./IfirestoreService";
 import firestore from "@react-native-firebase/firestore";
 import { Operator } from "../../types/utilityTypes";
 
-export default class FirestorService implements IfirestoreService {
+export default class FirestoreService implements IfirestoreService {
     async getCollection<T>(collection: string) {
         const response = await firestore().collection(collection).get();
         const aux = response.docs.map((e) => {
@@ -43,9 +43,9 @@ export default class FirestorService implements IfirestoreService {
     }
 
     async addnewDoc<T extends { [x: string]: any }>(doc: T, collection: string) {
-      //  console.log(doc);
-        // await firestore().collection(collection).doc().set(doc)
-        const res = await firestore().collection(collection).add({a:1, b:2});
+        //  console.log(doc);
+        await firestore().collection(collection).doc().set(doc);
+
         //console.log(res);
     }
 

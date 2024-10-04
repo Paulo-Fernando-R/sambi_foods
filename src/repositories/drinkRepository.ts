@@ -1,3 +1,7 @@
+import IfirestoreService from "../services/firestoreService/IfirestoreService";
+import FirestoreService from "../services/firestoreService/firestoreService";
+import IauthService from "../services/authService/IauthService";
+import AuthService from "../services/authService/authService";
 import axiosInstance from "../services/customAxiosClient";
 import DrinkIngredient from "../models/drinkIngredient";
 import DrinkCategory from "../models/drinkCategory";
@@ -8,9 +12,42 @@ import Drink from "../models/drink";
 
 export default class DrinkRepository implements IDrinkRepository {
     private axios: AxiosInstance;
+    private readonly favoriteCollection: string;
+    private firestore: IfirestoreService;
+    private authService: IauthService;
 
     constructor() {
         this.axios = axiosInstance(RecipeType.drink);
+        this.favoriteCollection = "FavoriteCollection";
+        this.firestore = new FirestoreService();
+        this.authService = new AuthService();
+    }
+    async removeFavoriteDrink(drink: Drink): Promise<void> {
+        const auth = this.authService.getItem();
+        if (!auth) {
+            throw new Error("Invalid user credentials");
+        }
+
+        const id = auth.user.id;
+        const collection = `${this.favoriteCollection}_${id}`;
+
+        const doc = await this.firestore.getDocByProperty(drink.idDrink, collection, "drink.idDrink", "==");
+
+        await this.firestore.removeDoc(doc[0].id, collection);
+    }
+    async favoriteDrink(drink: Drink): Promise<void> {
+        const auth = this.authService.getItem();
+        if (!auth) {
+            throw new Error("Invalid user credentials");
+        }
+
+        const id = auth.user.id;
+        const collection = `${this.favoriteCollection}_${id}`;
+        const body = {
+            user: id,
+            drink: drink,
+        };
+        await this.firestore.addnewDoc(body, collection);
     }
     async getCategories(): Promise<DrinkCategory[]> {
         //

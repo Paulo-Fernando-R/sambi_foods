@@ -50,7 +50,10 @@ export default function DrinkDetails({ navigation, route }: DrinkDetailsProps) {
 
                 <View style={styles.title}>
                     <Text style={styles.name}>{data.strDrink}</Text>
-                    <Favorite />
+                    <Favorite
+                        add={() => controller.addFavoriteDrink(data)}
+                        remove={() => controller.removeFavoriteDrink(data)}
+                    />
                 </View>
 
                 <View style={styles.tagsContainer}>

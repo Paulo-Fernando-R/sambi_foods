@@ -10,4 +10,6 @@ export default interface IDrinkRepository {
     searchByIngredient(query: string): Promise<Drink[]>;
     searchByCategory(query: string): Promise<Drink[]>;
     searchById(id: number | string): Promise<Drink>;
+    favoriteDrink(drink: Drink): Promise<void>;
+    removeFavoriteDrink(drink: Drink): Promise<void>;
 }

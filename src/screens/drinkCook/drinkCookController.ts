@@ -1,7 +1,9 @@
 import Drink from "../../models/drink";
 import convertUnits from "../../utils/convertUnits";
+
 export default class DrinkCookController {
     public imageBaseUrl: string;
+
     constructor() {
         this.imageBaseUrl = "https://www.themealdb.com/images/ingredients/";
     }

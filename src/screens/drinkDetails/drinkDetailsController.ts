@@ -8,6 +8,13 @@ export default class DrinkDetailsController {
         this.repository = new DrinkRepository();
     }
 
+    async addFavoriteDrink(drink: Drink) {
+        await this.repository.favoriteDrink(drink);
+    }
+    async removeFavoriteDrink(drink: Drink) {
+        await this.repository.removeFavoriteDrink(drink);
+    }
+
     async getDetails(id: number | string) {
         const res = await this.repository.searchById(id);
         return res;
