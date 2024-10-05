@@ -9,7 +9,7 @@ const Stack = createStackNavigator<DrinksRouterParamList>();
 
 export default function DrinksRouter() {
     return (
-        <Stack.Navigator initialRouteName="DrinksHome" screenOptions={{ headerShown: false }}>
+        <Stack.Navigator id="DrinkRouter" initialRouteName="DrinksHome" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="DrinksHome" component={Drinks} />
             <Stack.Screen
                 name="DrinksSearch"

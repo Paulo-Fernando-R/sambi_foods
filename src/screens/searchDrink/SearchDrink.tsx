@@ -1,5 +1,5 @@
 import { View, Text, FlatList, Image, TouchableOpacity, Dimensions } from "react-native";
-import { DrinksNavigationProp, DrinksSearchRouteProp } from "../../types/navigationTypes";
+import { DrinksNavigationProp, DrinksSearchNavigationProp, DrinksSearchRouteProp } from "../../types/navigationTypes";
 import ContentLoader, { Rect } from "react-content-loader/native";
 import SearchDrinkController from "./searchDrinkController";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
@@ -11,7 +11,7 @@ import Drink from "../../models/drink";
 import React from "react";
 
 type SearchDrinkProps = {
-    navigation: DrinksNavigationProp;
+    navigation: DrinksSearchNavigationProp;
     route: DrinksSearchRouteProp;
 };
 type SearchDrinkItemProps = {

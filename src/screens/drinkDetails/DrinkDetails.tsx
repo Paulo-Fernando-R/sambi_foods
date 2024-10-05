@@ -1,5 +1,5 @@
 import { View, Text, Image, ScrollView, TouchableOpacity, Dimensions } from "react-native";
-import { DrinksNavigationProp, DrinksDetailsRouteProp } from "../../types/navigationTypes";
+import { DrinksNavigationProp, DrinksDetailsRouteProp, DrinksDetailsNavigationProp } from "../../types/navigationTypes";
 import ContentLoader, { Rect, Code } from "react-content-loader/native";
 import Favorite from "../../components/favorite/Favorite";
 import DetailsController from "./drinkDetailsController";
@@ -10,7 +10,7 @@ import styles from "./drinkDetailsStyles";
 import React from "react";
 
 type DrinkDetailsProps = {
-    navigation: DrinksNavigationProp;
+    navigation: DrinksDetailsNavigationProp;
     route: DrinksDetailsRouteProp;
 };
 

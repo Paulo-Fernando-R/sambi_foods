@@ -1,4 +1,4 @@
-import { DrinksCookRouteProp, DrinksNavigationProp } from "../../types/navigationTypes";
+import { DrinksCookNavigationProp, DrinksCookRouteProp, DrinksNavigationProp } from "../../types/navigationTypes";
 import IngredientsList from "../../components/ingredientsList/IngredientsList";
 import InstructionList from "../../components/instructionsList/InstructionList";
 import Header from "../../components/header/Header";
@@ -9,7 +9,7 @@ import styles from "./drinkCookStyles";
 import React from "react";
 
 type DrinkCookProps = {
-    navigation: DrinksNavigationProp;
+    navigation: DrinksCookNavigationProp;
     route: DrinksCookRouteProp;
 };
 
