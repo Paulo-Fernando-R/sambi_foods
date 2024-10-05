@@ -23,6 +23,31 @@ export default class DrinkRepository implements IDrinkRepository {
         this.firestore = new FirestoreService();
         this.authService = new AuthService();
     }
+    async getFavoriteDrink(): Promise<{ data: DrinkByUser; id: string }[]> {
+        const auth = this.authService.getItem();
+        if (!auth) {
+            throw new Error("Invalid user credentials");
+        }
+
+        const id = auth.user.id;
+        const collection = `${this.favoriteCollection}_${id}`;
+
+        const fireRes = await this.firestore.getCollection<DrinkByUser>(collection);
+
+        const list = fireRes.map((e) => {
+            const aux = {
+                data: {
+                    drink: e.data.drink,
+                    user: e.data.user,
+                },
+                id: e.id,
+            };
+
+            return aux;
+        });
+
+        return list;
+    }
 
     async verifyIsDrinkFavorite(drink: Drink): Promise<boolean> {
         const auth = this.authService.getItem();
@@ -32,7 +57,12 @@ export default class DrinkRepository implements IDrinkRepository {
 
         const id = auth.user.id;
         const collection = `${this.favoriteCollection}_${id}`;
-        const res = await this.firestore.getDocByProperty<DrinkByUser>(drink.idDrink, collection, "drink.idDrink", "==");
+        const res = await this.firestore.getDocByProperty<DrinkByUser>(
+            drink.idDrink,
+            collection,
+            "drink.idDrink",
+            "=="
+        );
 
         if (res.length > 0) {
             return true;

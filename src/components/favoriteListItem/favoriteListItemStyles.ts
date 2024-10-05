@@ -5,7 +5,7 @@ import appColors from "../../styles/appColors";
 const styles = StyleSheet.create({
 
     itemBox:{
-        backgroundColor:appColors.bgTags,
+        backgroundColor:appColors.primaryLight,
         borderRadius: 20,
         width: "49%",
         gap: 8
@@ -15,16 +15,20 @@ const styles = StyleSheet.create({
         aspectRatio: "1/1",
         borderRadius: 20,
     },
-    tag:{
-        marginHorizontal:20,
+    itemTestTagContainer: {
+        marginHorizontal: 20,
+        flexDirection: "row",
+        alignItems: "center",
         paddingHorizontal: 8,
         paddingVertical: 4,
+        backgroundColor: appColors.textLight,
         borderRadius: 20,
+        gap: 4,
+        alignSelf: "flex-start",
+    },
+    itemTextTag: {
         ...appTexts.paragraphExtraSmallRegular,
         color: appColors.textMedium,
-        backgroundColor: appColors.textLight,
-        alignSelf:'flex-start',
-        gap: 4
     },
     itemTitle:{
         ...appTexts.paragraphLargeRegular,
@@ -34,7 +38,7 @@ const styles = StyleSheet.create({
     },
     itemSubTitle:{
         ...appTexts.paragraphSmallRegular,
-        color: appColors.textLight,
+        color: appColors.textMediumLight,
         paddingHorizontal: 20,
         paddingBottom: 20
     }

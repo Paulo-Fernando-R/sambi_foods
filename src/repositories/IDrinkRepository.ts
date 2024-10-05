@@ -1,6 +1,7 @@
 import DrinkIngredient from "../models/drinkIngredient";
 import DrinkCategory from "../models/drinkCategory";
 import Drink from "../models/drink";
+import DrinkByUser from "../models/drinkByUser";
 
 export default interface IDrinkRepository {
     getCategories(): Promise<DrinkCategory[]>;
@@ -13,4 +14,11 @@ export default interface IDrinkRepository {
     favoriteDrink(drink: Drink): Promise<void>;
     removeFavoriteDrink(drink: Drink): Promise<void>;
     verifyIsDrinkFavorite(food: Drink): Promise<boolean>;
+
+    getFavoriteDrink(): Promise<
+    {
+        data: DrinkByUser;
+        id: string;
+    }[]
+>;
 }

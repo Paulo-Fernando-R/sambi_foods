@@ -1,4 +1,5 @@
 import Food from "../models/food";
+import FoodByUser from "../models/foodByUser";
 import FoodCategory, { FoodCountry } from "../models/foodCategoty";
 
 export default interface IfoodRepository {
@@ -11,4 +12,10 @@ export default interface IfoodRepository {
     favoriteFood(food: Food): Promise<void>;
     removeFavoriteFood(food: Food): Promise<void>;
     verifyIsFoodFavorite(food: Food): Promise<boolean>;
+    getFavoriteFood(): Promise<
+        {
+            data: FoodByUser;
+            id: string;
+        }[]
+    >;
 }

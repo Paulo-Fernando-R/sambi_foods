@@ -5,13 +5,16 @@ import { Operator } from "../../types/utilityTypes";
 export default class FirestoreService implements IfirestoreService {
     async getCollection<T>(collection: string) {
         const response = await firestore().collection(collection).get();
+       
         const aux = response.docs.map((e) => {
+          //  console.log(e.data)
             return {
                 data: e.data() as T,
+
                 id: e.id,
             };
         });
-        // console.log(response.docs.map((e) => e.data()));
+      
         return aux;
     }
 
