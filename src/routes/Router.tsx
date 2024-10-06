@@ -35,10 +35,10 @@ function AppRouter() {
                 initialRouteName="Foods"
                 sceneContainerStyle={{ backgroundColor: appColors.bgLight }}
             >
-                <Tab.Screen name="Foods" component={FoodsRouter} options={{ tabBarLabel: "Comidas" }} />
-                <Tab.Screen name="Drinks" component={DrinksRouter} options={{ tabBarLabel: "Bebidas" }} />
-                <Tab.Screen name="Favorite" component={Favorite} options={{ tabBarLabel: "Favoritas" }} />
-                <Tab.Screen name="User" component={FoodsRouter} options={{ tabBarLabel: "Usuário" }} />
+                <Tab.Screen name="Foods" component={FoodsRouter} options={{ tabBarLabel: "Foods" }} />
+                <Tab.Screen name="Drinks" component={DrinksRouter} options={{ tabBarLabel: "Drinks" }} />
+                <Tab.Screen name="Favorite" component={Favorite} options={{ tabBarLabel: "Favorite" }} />
+                <Tab.Screen name="User" component={FoodsRouter} options={{ tabBarLabel: "User" }} />
             </Tab.Navigator>
         </NavigationContainer>
     );
