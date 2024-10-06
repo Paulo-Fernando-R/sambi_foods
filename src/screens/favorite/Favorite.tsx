@@ -28,7 +28,7 @@ export default function Favorite({ navigation }: RootTabsFavoriteNavigationProp)
                 <FlatList
                     data={controller.filterData(active, data)}
                     numColumns={2}
-                    renderItem={({ item }) => <FavoriteListItem item={item} />}
+                    renderItem={({ item }) => <FavoriteListItem item={item} navigation={navigation} />}
                     style={styles.scrollArea}
                     contentContainerStyle={styles.scrollAreaContent}
                     columnWrapperStyle={{ justifyContent: "space-between" }}

@@ -10,9 +10,17 @@ export default class FavoriteItemAdapter {
     public tag: string;
     public category: string;
     public image: string;
-    public type: string
+    public type: "food" | "drink";
 
-    constructor(fireId: string, id: string, name: string, tag: string, category: string, image: string, type:string) {
+    constructor(
+        fireId: string,
+        id: string,
+        name: string,
+        tag: string,
+        category: string,
+        image: string,
+        type: "food" | "drink"
+    ) {
         this.fireId = fireId;
         this.id = id;
         this.name = name;
@@ -45,7 +53,7 @@ export default class FavoriteItemAdapter {
                 item.data.food.strTags,
                 item.data.food.strCategory,
                 item.data.food.strMealThumb,
-                'food'
+                "food"
             );
 
             return aux;
@@ -59,7 +67,7 @@ export default class FavoriteItemAdapter {
                 item.data.drink.strTags ?? "",
                 item.data.drink.strCategory,
                 item.data.drink.strDrinkThumb,
-                'drink'
+                "drink"
             );
 
             return aux;
