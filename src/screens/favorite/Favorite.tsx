@@ -24,14 +24,25 @@ export default function Favorite({ navigation }: RootTabsFavoriteNavigationProp)
         <View style={styles.screenContainer}>
             <Text style={styles.title}>Favorites</Text>
             <FavoriteScreenFilter active={active} handleFilterClick={handleFilterClick} />
-            <FlatList
-                data={controller.filterData(active, data)}
-                numColumns={2}
-                renderItem={({ item }) => <FavoriteListItem item={item} />}
-                style={styles.scrollArea}
-                contentContainerStyle={styles.scrollAreaContent}
-                columnWrapperStyle={{ justifyContent: "space-between" }}
-            />
+            {data ? (
+                <FlatList
+                    data={controller.filterData(active, data)}
+                    numColumns={2}
+                    renderItem={({ item }) => <FavoriteListItem item={item} />}
+                    style={styles.scrollArea}
+                    contentContainerStyle={styles.scrollAreaContent}
+                    columnWrapperStyle={{ justifyContent: "space-between" }}
+                />
+            ) : (
+                <FlatList
+                    data={controller.placeholderData}
+                    numColumns={2}
+                    renderItem={({ item }) => <FavoriteListItem item={item} />}
+                    style={styles.scrollArea}
+                    contentContainerStyle={styles.scrollAreaContent}
+                    columnWrapperStyle={{ justifyContent: "space-between" }}
+                />
+            )}
         </View>
     );
 }

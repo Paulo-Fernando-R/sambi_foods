@@ -1,16 +1,28 @@
-import { View, Text, Image, FlatList } from "react-native";
+import { View, Text, Image } from "react-native";
 import styles from "./favoriteListItemStyles";
 import React from "react";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import appColors from "../../styles/appColors";
 import FavoriteItemAdapter from "../../models/favoriteItemAdapter";
+import ContentLoader, { Rect } from "react-content-loader/native";
 
 type FavoriteListItem = {
     item: FavoriteItemAdapter | undefined;
 };
 
 export default function FavoriteListItem({ item }: FavoriteListItem) {
-    if (!item) return null;
+    if (!item) {
+        return (
+            <View style={styles.placeholder}>
+                <ContentLoader
+                    backgroundColor={appColors.textMediumLight}
+                    foregroundColor={appColors.skeletonForeground}
+                >
+                    <Rect x="0" y="0" rx="4" ry="4" width="100%" height="300" />
+                </ContentLoader>
+            </View>
+        );
+    }
     return (
         <View style={styles.itemBox}>
             <Image style={styles.image} src={item?.image} />

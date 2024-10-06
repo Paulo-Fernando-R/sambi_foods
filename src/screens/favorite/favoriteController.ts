@@ -8,10 +8,12 @@ import IfoodRepository from "../../repositories/IfoodRepository";
 export default class FavoriteController {
     private foodRepository: IfoodRepository;
     private drinkRepository: IDrinkRepository;
+    public placeholderData: undefined[];
 
     constructor() {
         this.foodRepository = new FoodRepository();
         this.drinkRepository = new DrinkRepository();
+        this.placeholderData = [undefined, undefined, undefined, undefined, undefined, undefined];
     }
 
     async getFavoriteFood() {

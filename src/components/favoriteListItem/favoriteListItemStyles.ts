@@ -10,6 +10,14 @@ const styles = StyleSheet.create({
         width: "49%",
         gap: 8
     },
+
+    placeholder: {
+        borderRadius: 20,
+        overflow: 'hidden',
+        width: "49%",
+        gap: 8,
+        height: 250
+    },
     image:{
         width: "100%",
         aspectRatio: "1/1",
