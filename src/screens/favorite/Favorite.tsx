@@ -7,6 +7,7 @@ import { View, Text, FlatList } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import styles from "./favoriteStyles";
+import { useIsFocused } from "@react-navigation/native";
 
 export default function Favorite({ navigation }: RootTabsFavoriteNavigationProp) {
     const controller = new FavoriteController();
@@ -15,10 +16,14 @@ export default function Favorite({ navigation }: RootTabsFavoriteNavigationProp)
     const handleFilterClick = (filter: FavoriteFilterEnum) => {
         setActive(filter);
     };
-    const { data } = useQuery({
+    const { data, refetch } = useQuery({
         queryKey: ["favorite"],
         queryFn: () => controller.getFavorites(),
     });
+
+    const isFocused = useIsFocused();
+
+    if (isFocused) refetch();
 
     return (
         <View style={styles.screenContainer}>
