@@ -1,3 +1,4 @@
+import FavoriteFilterEnum from "../../enums/favoriteFilterEnum";
 import FavoriteItemAdapter from "../../models/favoriteItemAdapter";
 import DrinkRepository from "../../repositories/drinkRepository";
 import FoodRepository from "../../repositories/foodRepository";
@@ -19,6 +20,13 @@ export default class FavoriteController {
 
     async getFavoriteDrink() {
         return await this.drinkRepository.getFavoriteDrink();
+    }
+
+    filterData(filter: FavoriteFilterEnum, data: FavoriteItemAdapter[] | undefined) {
+        if (filter === FavoriteFilterEnum.all) {
+            return data;
+        }
+        return data?.filter((e) => e.type === filter);
     }
 
     async getFavorites() {
