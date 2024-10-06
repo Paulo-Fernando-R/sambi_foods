@@ -11,7 +11,7 @@ import Drink from "../../models/drink";
 import React from "react";
 
 type SearchDrinkProps = {
-    navigation: DrinksSearchNavigationProp;
+    navigation: DrinksNavigationProp;
     route: DrinksSearchRouteProp;
 };
 type SearchDrinkItemProps = {

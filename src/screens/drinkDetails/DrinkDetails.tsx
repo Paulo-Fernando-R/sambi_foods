@@ -10,7 +10,7 @@ import styles from "./drinkDetailsStyles";
 import React from "react";
 
 type DrinkDetailsProps = {
-    navigation: DrinksDetailsNavigationProp;
+    navigation: DrinksNavigationProp;
     route: DrinksDetailsRouteProp;
 };
 

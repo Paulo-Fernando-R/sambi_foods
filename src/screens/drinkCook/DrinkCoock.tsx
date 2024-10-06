@@ -9,7 +9,7 @@ import styles from "./drinkCookStyles";
 import React from "react";
 
 type DrinkCookProps = {
-    navigation: DrinksCookNavigationProp;
+    navigation: DrinksNavigationProp;
     route: DrinksCookRouteProp;
 };
 
