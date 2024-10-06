@@ -1,6 +1,4 @@
-import Drink from "./drink";
 import DrinkByUser from "./drinkByUser";
-import Food from "./food";
 import FoodByUser from "./foodByUser";
 
 export default class FavoriteItemAdapter {

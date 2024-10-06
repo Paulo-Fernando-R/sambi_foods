@@ -1,12 +1,12 @@
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import styles from "./favoriteListItemStyles";
-import React from "react";
-import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import appColors from "../../styles/appColors";
 import FavoriteItemAdapter from "../../models/favoriteItemAdapter";
 import ContentLoader, { Rect } from "react-content-loader/native";
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { RootTabsParamList } from "../../types/navigationTypes";
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
+import appColors from "../../styles/appColors";
+import styles from "./favoriteListItemStyles";
+import React from "react";
 
 type FavoriteListItem = {
     item: FavoriteItemAdapter | undefined;

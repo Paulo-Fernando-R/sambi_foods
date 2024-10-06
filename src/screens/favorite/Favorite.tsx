@@ -5,8 +5,8 @@ import FavoriteFilterEnum from "../../enums/favoriteFilterEnum";
 import FavoriteController from "./favoriteController";
 import { View, Text, FlatList } from "react-native";
 import { useQuery } from "@tanstack/react-query";
-import styles from "./favoriteStyles";
 import React, { useState } from "react";
+import styles from "./favoriteStyles";
 
 export default function Favorite({ navigation }: RootTabsFavoriteNavigationProp) {
     const controller = new FavoriteController();
