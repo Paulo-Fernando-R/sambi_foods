@@ -9,6 +9,7 @@ import FoodsRouter from "./FoodsRouter";
 import DrinksRouter from "./DrinksRouter";
 import Favorite from "../screens/favorite/Favorite";
 import { RootTabsParamList } from "../types/navigationTypes";
+import User from "../screens/user/User";
 
 const Tab = createBottomTabNavigator<RootTabsParamList>();
 const Stack = createStackNavigator();
@@ -38,7 +39,7 @@ function AppRouter() {
                 <Tab.Screen name="Foods" component={FoodsRouter} options={{ tabBarLabel: "Foods" }} />
                 <Tab.Screen name="Drinks" component={DrinksRouter} options={{ tabBarLabel: "Drinks" }} />
                 <Tab.Screen name="Favorite" component={Favorite} options={{ tabBarLabel: "Favorite" }} />
-                <Tab.Screen name="User" component={FoodsRouter} options={{ tabBarLabel: "User" }} />
+                <Tab.Screen name="User" component={User} options={{ tabBarLabel: "User" }} />
             </Tab.Navigator>
         </NavigationContainer>
     );
