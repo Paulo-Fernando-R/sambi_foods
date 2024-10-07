@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     headerTitle: {
         ...appTexts.titleMediumSemiBold,
         color: appColors.textDark,
+        maxWidth: '80%'
     },
 });
 

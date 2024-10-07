@@ -1,34 +1,55 @@
 import { View, Image, Text, TouchableOpacity, TouchableHighlight } from "react-native";
+import * as Linking from "expo-linking";
 import styles from "./userStyles";
-
+//@ts-ignore
+import icon from "../../../assets/images/icon.png";
 import React from "react";
+import appColors from "../../styles/appColors";
+import { useAuthContext } from "../../context/authContext";
+import AuthService from "../../services/authService/authService";
 
 export default function User() {
+    const context = useAuthContext();
+    const auth = new AuthService();
+    function github() {
+        Linking.openURL("https://github/exemplo");
+    }
+
+    function linkedin() {
+        Linking.openURL("https://linkedin/exempllo");
+    }
+
+    function signOut() {
+        auth.deleteItem();
+        //@ts-ignore
+        context.setUser(null);
+    }
+
     return (
-        <View>
-            <Text>User</Text>
-            <View>
-                <Image />
-                <View>
-                    <Text>Jane Smith</Text>
-                    <Text>jane.smith@gmailk.com</Text>
+        <View style={styles.screenContainer}>
+            <Text style={styles.title}>User</Text>
+            <View style={styles.userInfo}>
+                <Image style={styles.image} src={context.user?.user.photo!} />
+                <View style={styles.name}>
+                    <Text style={styles.nameText}>{context.user?.user.name}</Text>
+                    <Text style={styles.emailText}>{context.user?.user.email}</Text>
                 </View>
             </View>
-            <TouchableOpacity>
-                <Text>Log out</Text>
+            <TouchableOpacity activeOpacity={0.8} style={styles.Button} onPress={signOut}>
+                <Text style={styles.bttonText}>Log out</Text>
             </TouchableOpacity>
-            <View>
-                <Image />
-                <Text>Sambi FOODS</Text>
+            <View style={styles.bodyBox}>
+                <Image style={styles.icon} source={icon} />
+                <Text style={styles.iconText}>Sambi FOODS</Text>
             </View>
 
-            <View>
-                <TouchableHighlight>
-                    <Text>Github: https://github/exemplo</Text>
+            <View style={styles.linkBox}>
+                <TouchableHighlight onPress={github} underlayColor={appColors.bgIcon}>
+                    <Text style={styles.linkText}>Github: https://github/exemplo</Text>
                 </TouchableHighlight>
 
-                <TouchableHighlight>
-                    <Text>LinkedIn: https://linkedin/exempllo</Text>
+                <TouchableHighlight onPress={linkedin} underlayColor={appColors.bgIcon}>
+                    <Text style={styles.linkText}>LinkedIn: https://linkedin/exempllo</Text>
                 </TouchableHighlight>
             </View>
         </View>
