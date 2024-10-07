@@ -65,7 +65,7 @@ function TalkItem({ text, index, setIsSpeaking, currentSpeak }: TalkItemProps) {
         <View style={styles.talkItem}>
             <Text style={styles.talkText}>{text}</Text>
             <TouchableOpacity style={styles.talkButton} activeOpacity={0.8} onPress={isSpeaking() ? stop : speak}>
-                <Text style={styles.talkButtonText}>{isSpeaking() ? "Parar" : "Falar"}</Text>
+                <Text style={styles.talkButtonText}>{isSpeaking() ? "Stop" : "Speak"}</Text>
                 <Foundation name="sound" size={20} color={appColors.textLight} />
             </TouchableOpacity>
         </View>

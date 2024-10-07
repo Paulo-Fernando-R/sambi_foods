@@ -17,26 +17,26 @@ export default class AuthService implements IauthService {
     }
 
     async signIn(): Promise<SignInSuccessResponse | undefined> {
-        // const aux: User = {
-        //     idToken: null,
-        //     scopes: [],
-        //     serverAuthCode: null,
-        //     user: {
-        //         email: "pfr987@gmail.com",
-        //         familyName: "Perez",
-        //         givenName: "Fernando",
-        //         id: "123456789",
-        //         name: "Fernando Perez",
-        //         photo: "https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp",
-        //     },
-        // };
+        const aux: User = {
+            idToken: null,
+            scopes: [],
+            serverAuthCode: null,
+            user: {
+                email: "pfr987@gmail.com",
+                familyName: "Perez",
+                givenName: "Fernando",
+                id: "123456789",
+                name: "Fernando Perez",
+                photo: "https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp",
+            },
+        };
 
-        // this.save(aux);
+        this.save(aux);
 
-        // return {
-        //     type: "success",
-        //     data: aux,
-        // };
+        return {
+            type: "success",
+            data: aux,
+        };
 
         GoogleSignin.configure();
 

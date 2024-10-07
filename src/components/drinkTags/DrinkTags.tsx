@@ -21,7 +21,7 @@ export default function DrinkTags({ isLoading, list, navigation }: DrinkTagsProp
     if (isLoading || !list) {
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Por país</Text>
+                <Text style={styles.title}>Categories</Text>
 
                 <CountryTagsSkeleton />
             </View>

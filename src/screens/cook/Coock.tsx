@@ -27,7 +27,7 @@ export default function Coock({ navigation, route }: CookProps) {
                 <Header goBack={() => navigation.goBack()} title={recipe.strMeal} />
             </View>
 
-            <Text style={styles.title}>Separe os ingredientes</Text>
+            <Text style={styles.title}>Separate the ingredients</Text>
 
             <IngredientsList imgUrl={controller.imageBaseUrl} ingredients={ingredients} measures={measures} />
 

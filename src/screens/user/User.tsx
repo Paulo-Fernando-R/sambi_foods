@@ -1,12 +1,12 @@
 import { View, Image, Text, TouchableOpacity, TouchableHighlight } from "react-native";
-import * as Linking from "expo-linking";
-import styles from "./userStyles";
+import AuthService from "../../services/authService/authService";
+import { useAuthContext } from "../../context/authContext";
 //@ts-ignore
 import icon from "../../../assets/images/icon.png";
-import React from "react";
 import appColors from "../../styles/appColors";
-import { useAuthContext } from "../../context/authContext";
-import AuthService from "../../services/authService/authService";
+import * as Linking from "expo-linking";
+import styles from "./userStyles";
+import React from "react";
 
 export default function User() {
     const context = useAuthContext();
@@ -45,11 +45,11 @@ export default function User() {
 
             <View style={styles.linkBox}>
                 <TouchableHighlight onPress={github} underlayColor={appColors.bgIcon}>
-                    <Text style={styles.linkText}>Github: https://github/exemplo</Text>
+                    <Text style={styles.linkText}>Github: https://github.com/Paulo-Fernando-R/sambi_foods</Text>
                 </TouchableHighlight>
 
                 <TouchableHighlight onPress={linkedin} underlayColor={appColors.bgIcon}>
-                    <Text style={styles.linkText}>LinkedIn: https://linkedin/exempllo</Text>
+                    <Text style={styles.linkText}>LinkedIn: https://www.linkedin.com/in/paulo-fernando-071bb31a9/</Text>
                 </TouchableHighlight>
             </View>
         </View>

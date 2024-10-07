@@ -29,7 +29,7 @@ export default function CountryTags({ isLoading, list, navigation }: CountryTags
     if (isLoading || !list) {
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Por país</Text>
+                <Text style={styles.title}>By country</Text>
 
                 <CountryTagsSkeleton />
             </View>
