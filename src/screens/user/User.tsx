@@ -12,11 +12,11 @@ export default function User() {
     const context = useAuthContext();
     const auth = new AuthService();
     function github() {
-        Linking.openURL("https://github/exemplo");
+        Linking.openURL("https://github.com/Paulo-Fernando-R/sambi_foods");
     }
 
     function linkedin() {
-        Linking.openURL("https://linkedin/exempllo");
+        Linking.openURL("https://www.linkedin.com/in/paulo-fernando-071bb31a9/");
     }
 
     function signOut() {

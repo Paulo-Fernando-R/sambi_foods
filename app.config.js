@@ -1,6 +1,6 @@
 module.exports = {
     expo: {
-        name: "sambi_foods",
+        name: "Sambi Foods",
         slug: "sambi_foods",
         version: "1.0.0",
         orientation: "portrait",
@@ -22,7 +22,6 @@ module.exports = {
                 backgroundColor: "#ffffff",
             },
             package: "com.nome123.sambi_foods",
-            //"googleServicesFile": "./google-services.json"
             googleServicesFile: process.env.GOOGLE_SERVICES_JSON,
         },
         web: {
