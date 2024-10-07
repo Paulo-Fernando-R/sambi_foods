@@ -20,6 +20,7 @@ export default function Login() {
 
     if (mutation.data) {
         setUser(mutation.data.data);
+        
     }
 
     return (

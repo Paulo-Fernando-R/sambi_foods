@@ -35,5 +35,6 @@ yarn-error.*
 google-services.json
 keystore.json
 eas.json
+credentials.json
 # typescript
 *.tsbuildinfo
